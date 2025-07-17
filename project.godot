@@ -1,0 +1,23 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+[GDScript_Formatter]
+
+format_on_save=true
+
+[application]
+
+config/name="Playground"
+run/main_scene="uid://djk1sebtueu62"
+config/features=PackedStringArray("4.4", "Forward Plus")
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/format_on_save/plugin.cfg", "res://addons/gdscript_formatter/plugin.cfg", "res://addons/simple_gdscript_formatter/plugin.cfg")

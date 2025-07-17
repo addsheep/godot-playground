@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://djk1sebtueu62"]
+
+[ext_resource type="PackedScene" uid="uid://dwjdpucscrr7m" path="res://src/clickable/clickable.tscn" id="1_ig7tw"]
+
+[node name="Main" type="Node2D"]
+
+[node name="Clickable" parent="." instance=ExtResource("1_ig7tw")]
+position = Vector2(213, 117)
+
+[node name="Polygon2D" type="Polygon2D" parent="Clickable/Visual" index="0"]
+polygon = PackedVector2Array(-80, -80, 129, -57, -7, 125)
+
+[editable path="Clickable"]
