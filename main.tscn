@@ -1,14 +1,110 @@
-[gd_scene load_steps=2 format=3 uid="uid://djk1sebtueu62"]
+[gd_scene load_steps=16 format=3 uid="uid://djk1sebtueu62"]
 
 [ext_resource type="PackedScene" uid="uid://dwjdpucscrr7m" path="res://src/clickable/clickable.tscn" id="1_ig7tw"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_0xm2m"]
+animation = &"look"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_7mycd"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_272bh"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_0xm2m"]
+states/look/node = SubResource("AnimationNodeAnimation_0xm2m")
+states/look/position = Vector2(520, 103)
+transitions = ["Start", "look", SubResource("AnimationNodeStateMachineTransition_7mycd"), "look", "End", SubResource("AnimationNodeStateMachineTransition_272bh")]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ig7tw"]
+animation = &"idle"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_1bvp3"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_ig7tw"]
+state_machine_type = 1
+states/idle/node = SubResource("AnimationNodeAnimation_ig7tw")
+states/idle/position = Vector2(547, 111)
+transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_1bvp3")]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_0xm2m"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_h2yge"]
+advance_mode = 2
+advance_condition = &"looking"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_lquwl"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_7mycd"]
+states/Looking/node = SubResource("AnimationNodeStateMachine_0xm2m")
+states/Looking/position = Vector2(692, 68)
+states/MovementStateMachine/node = SubResource("AnimationNodeStateMachine_ig7tw")
+states/MovementStateMachine/position = Vector2(471, 203)
+states/Start/position = Vector2(213, 86)
+transitions = ["Start", "MovementStateMachine", SubResource("AnimationNodeStateMachineTransition_0xm2m"), "MovementStateMachine", "Looking", SubResource("AnimationNodeStateMachineTransition_h2yge"), "Looking", "MovementStateMachine", SubResource("AnimationNodeStateMachineTransition_lquwl")]
+
+[sub_resource type="Animation" id="Animation_ig7tw"]
+resource_name = "look"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Clickable_Visual#Polygon2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.833333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(216, 118), Vector2(495, 118)]
+}
+
+[sub_resource type="Animation" id="Animation_h2yge"]
+resource_name = "idle"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Clickable_Visual#Polygon2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(213, 118)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_h2yge"]
+_data = {
+&"idle": SubResource("Animation_h2yge"),
+&"look": SubResource("Animation_ig7tw")
+}
 
 [node name="Main" type="Node2D"]
 
 [node name="Clickable_Visual#Polygon2D" type="Polygon2D" parent="."]
-position = Vector2(211, 118)
 polygon = PackedVector2Array(-80, -80, 129, -57, -7, 125)
 
 [node name="Clickable" parent="." instance=ExtResource("1_ig7tw")]
 position = Vector2(213, 117)
+
+[node name="Look" parent="Clickable/Interactions" index="0" node_paths=PackedStringArray("animation_tree")]
+animation_tree = NodePath("../../../AnimationTree")
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource("AnimationNodeStateMachine_7mycd")
+anim_player = NodePath("AnimationPlayer")
+parameters/conditions/looking = false
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="AnimationTree"]
+root_node = NodePath("../..")
+libraries = {
+&"": SubResource("AnimationLibrary_h2yge")
+}
 
 [editable path="Clickable"]
