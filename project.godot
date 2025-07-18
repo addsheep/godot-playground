@@ -15,8 +15,12 @@ format_on_save=true
 [application]
 
 config/name="Playground"
-run/main_scene="uid://djk1sebtueu62"
+run/main_scene="uid://dy8mj642kxk6x"
 config/features=PackedStringArray("4.4", "Forward Plus")
+
+[display]
+
+window/subwindows/embed_subwindows=false
 
 [editor_plugins]
 

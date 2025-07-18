@@ -36,6 +36,7 @@ func _input_event(viewport: Viewport, event: InputEvent, shape_idx: int) -> void
 
 
 func _mouse_enter() -> void:
+	print_debug("mouse enter")
 	Input.set_default_cursor_shape(Input.CURSOR_POINTING_HAND)
 
 

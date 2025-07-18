@@ -1,0 +1,39 @@
+[gd_scene load_steps=2 format=3 uid="uid://dy8mj642kxk6x"]
+
+[ext_resource type="Script" uid="uid://dqtgpe3u8lmdr" path="res://tests/main.gd" id="1_c8tuj"]
+
+[node name="TestMain" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_c8tuj")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ButtonContainer" type="FlowContainer" parent="CanvasLayer"]
+unique_name_in_owner = true
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/h_separation = 8
+theme_override_constants/v_separation = 8
+
+[node name="Window" type="Window" parent="."]
+physics_object_picking = true
+title = "TEST"
+initial_position = 1
+size = Vector2i(800, 450)
+visible = false
+
+[node name="TestRoot" type="Node" parent="Window"]
+
+[node name="Button" type="Button" parent="Window/TestRoot"]
+offset_right = 8.0
+offset_bottom = 8.0
+text = "TEST
+"

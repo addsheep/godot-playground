@@ -1,6 +1,6 @@
 [gd_scene load_steps=16 format=3 uid="uid://djk1sebtueu62"]
 
-[ext_resource type="PackedScene" uid="uid://dwjdpucscrr7m" path="res://src/clickable/clickable.tscn" id="1_ig7tw"]
+[ext_resource type="PackedScene" uid="uid://dwjdpucscrr7m" path="res://src/clickable/clickable.tscn" id="1_x8q5o"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_0xm2m"]
 animation = &"look"
@@ -90,7 +90,7 @@ _data = {
 [node name="Clickable_Visual#Polygon2D" type="Polygon2D" parent="."]
 polygon = PackedVector2Array(-80, -80, 129, -57, -7, 125)
 
-[node name="Clickable" parent="." instance=ExtResource("1_ig7tw")]
+[node name="Clickable" parent="." instance=ExtResource("1_x8q5o")]
 position = Vector2(213, 117)
 
 [node name="Look" parent="Clickable/Interactions" index="0" node_paths=PackedStringArray("animation_tree")]
