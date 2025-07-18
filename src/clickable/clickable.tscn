@@ -1,7 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://dwjdpucscrr7m"]
+[gd_scene load_steps=3 format=3 uid="uid://dwjdpucscrr7m"]
 
 [ext_resource type="Script" uid="uid://c0e13vnum8uy6" path="res://src/clickable/clickable.gd" id="1_lei8h"]
-[ext_resource type="Script" uid="uid://c7n1mamnfj07v" path="res://src/common/perform_look.gd" id="2_gr7h0"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_lei8h"]
 radius = 100.0
@@ -13,11 +12,6 @@ script = ExtResource("1_lei8h")
 shape = SubResource("CircleShape2D_lei8h")
 
 [node name="Interactions" type="Node" parent="."]
-
-[node name="Look" type="Node" parent="Interactions"]
-script = ExtResource("2_gr7h0")
-
-[node name="Take" type="Node" parent="Interactions"]
 
 [node name="GUI" type="Control" parent="."]
 layout_mode = 3
