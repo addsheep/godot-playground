@@ -3,7 +3,7 @@ class_name PerformLook extends Node
 const POPUP: PackedScene = preload("uid://ua0ghmjaouf")  # text_popup.tscn
 
 @export var description: String = "a description of the object"
-@export var animation_tree: AnimationTree  # Allow setting condition "looking" to trigger the animation
+@export var animation_tree: AnimationTree  # AnimationTree checks condition "looking" to trigger the animation
 
 var _popup: Node
 
