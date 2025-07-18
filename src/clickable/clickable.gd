@@ -21,12 +21,7 @@ func _ready() -> void:
 
 
 func _unhandled_input(event: InputEvent) -> void:
-	if (
-		_menu.visible
-		and event is InputEventMouseButton
-		and event.button_index == MOUSE_BUTTON_LEFT
-		and event.is_pressed()
-	):
+	if _menu.visible and event.is_action_pressed("left_click"):
 		_menu.hide()
 		get_viewport().set_input_as_handled()
 
@@ -35,11 +30,7 @@ func _unhandled_input(event: InputEvent) -> void:
 
 
 func _input_event(viewport: Viewport, event: InputEvent, shape_idx: int) -> void:
-	if (
-		event is InputEventMouseButton
-		and event.button_index == MOUSE_BUTTON_LEFT
-		and event.is_pressed()
-	):
+	if event.is_action_pressed("left_click"):
 		_menu.show()
 		get_viewport().set_input_as_handled()
 

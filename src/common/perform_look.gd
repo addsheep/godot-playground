@@ -15,11 +15,6 @@ func perform() -> void:
 
 
 func _unhandled_input(event: InputEvent) -> void:
-	if (
-		_popup
-		and event is InputEventMouseButton
-		and event.button_index == MOUSE_BUTTON_LEFT
-		and event.is_pressed()
-	):
+	if _popup and event.is_action_pressed("left_click"):
 		_popup.queue_free()
 		get_viewport().set_input_as_handled()
