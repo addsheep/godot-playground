@@ -4,10 +4,11 @@
 
 [node name="Main" type="Node2D"]
 
+[node name="Clickable_Visual#Polygon2D" type="Polygon2D" parent="."]
+position = Vector2(211, 118)
+polygon = PackedVector2Array(-80, -80, 129, -57, -7, 125)
+
 [node name="Clickable" parent="." instance=ExtResource("1_ig7tw")]
 position = Vector2(213, 117)
-
-[node name="Polygon2D" type="Polygon2D" parent="Clickable/Visual" index="0"]
-polygon = PackedVector2Array(-80, -80, 129, -57, -7, 125)
 
 [editable path="Clickable"]

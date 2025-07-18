@@ -22,3 +22,4 @@ func _unhandled_input(event: InputEvent) -> void:
 		and event.is_pressed()
 	):
 		_popup.queue_free()
+		get_viewport().set_input_as_handled()

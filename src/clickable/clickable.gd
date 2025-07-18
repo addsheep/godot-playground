@@ -2,20 +2,15 @@ extends Area2D
 
 ## A clickable object that shows an interaction menu on click.
 ## How to customize:
-## - add a visual node under "Visual"
-## - set "display_name"
-## - add/remove children of "Interactions".
+## - add/remove children of "Interactions". Each child node should have a "perform" method.
 ## - make a unique shape for CollisionShape2D
-## - adjust GUI/Menu size and position
-
-@export var display_name: String
 
 var _interaction_nodes: Array[Node]
 
-@onready var _gui := $GUI
-@onready var _menu := $GUI/Menu
+@onready var _gui: Control = $GUI
+@onready var _menu: Control = $GUI/Menu
 
-## Built-in overrides
+## Node overrides
 
 
 func _ready() -> void:
@@ -23,24 +18,6 @@ func _ready() -> void:
 	_gui.z_index = 1000
 	_menu.hide()
 	_build_menu()
-
-
-func _input_event(viewport: Viewport, event: InputEvent, shape_idx: int) -> void:
-	if (
-		event is InputEventMouseButton
-		and event.button_index == MOUSE_BUTTON_LEFT
-		and event.is_pressed()
-	):
-		_menu.show()
-
-
-## Internal methods
-
-
-func _perform_action(interaction: Node) -> void:
-	if interaction.has_method("perform"):
-		interaction.perform()
-	_menu.hide()
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -51,6 +28,38 @@ func _unhandled_input(event: InputEvent) -> void:
 		and event.is_pressed()
 	):
 		_menu.hide()
+		get_viewport().set_input_as_handled()
+
+
+## Area2D overrides
+
+
+func _input_event(viewport: Viewport, event: InputEvent, shape_idx: int) -> void:
+	if (
+		event is InputEventMouseButton
+		and event.button_index == MOUSE_BUTTON_LEFT
+		and event.is_pressed()
+	):
+		_menu.show()
+		get_viewport().set_input_as_handled()
+
+
+func _mouse_enter() -> void:
+	Input.set_default_cursor_shape(Input.CURSOR_POINTING_HAND)
+
+
+func _mouse_exit() -> void:
+	Input.set_default_cursor_shape(Input.CURSOR_ARROW)
+
+
+## Internal methods
+
+
+func _perform_action(interaction: Node) -> void:
+	# TODO: how to wait for movement/animation?
+	if interaction.has_method("perform"):
+		interaction.perform()
+	_menu.hide()
 
 
 func _build_menu() -> void:
