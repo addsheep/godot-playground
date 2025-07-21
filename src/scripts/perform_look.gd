@@ -1,6 +1,6 @@
 class_name PerformLook extends Node
 
-const POPUP: PackedScene = preload("uid://ua0ghmjaouf")  # text_popup.tscn
+const POPUP_PATH := "PackedScenes/text_popup"
 
 @export var description: String = "a description of the object"
 @export var animation_tree: AnimationTree  # AnimationTree checks condition "looking" to trigger the animation
@@ -14,7 +14,7 @@ func perform() -> void:
 		await get_tree().create_timer(0.5).timeout
 		animation_tree.set("parameters/conditions/looking", false)
 
-	_popup = POPUP.instantiate()
+	_popup = DatabaseUtils.load_res(POPUP_PATH).instantiate()
 	add_child(_popup)
 	var label: Label = _popup.get_node("%Label")
 	label.text = description
