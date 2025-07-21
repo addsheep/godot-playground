@@ -1,0 +1,51 @@
+[gd_scene load_steps=5 format=3 uid="uid://bwxuyaw8nysgx"]
+
+[ext_resource type="PackedScene" uid="uid://cf3pjhuf52brd" path="res://src/inventory/inventory_grid.tscn" id="1_i0jss"]
+[ext_resource type="Script" uid="uid://obyp0hfmosoq" path="res://tests/test_inventory.gd" id="1_wp8uh"]
+[ext_resource type="Script" uid="uid://dxk5qiebq6o2f" path="res://src/inventory/inventory.gd" id="2_wp8uh"]
+
+[sub_resource type="Resource" id="Resource_372ms"]
+script = ExtResource("2_wp8uh")
+_slots = {}
+metadata/_custom_type_script = "uid://dxk5qiebq6o2f"
+
+[node name="TestInventory" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_wp8uh")
+
+[node name="InventoryUi" parent="." instance=ExtResource("1_i0jss")]
+layout_mode = 0
+inventory = SubResource("Resource_372ms")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 414.0
+offset_right = 398.0
+offset_bottom = 475.0
+
+[node name="AddButton0" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+text = "Add 0"
+
+[node name="AddButton1" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+text = "Add 1"
+
+[node name="DelButton0" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+text = "Del 0"
+
+[node name="DelButton1" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+text = "Del 1"
+
+[connection signal="pressed" from="HBoxContainer/AddButton0" to="." method="_add_new" binds= [0]]
+[connection signal="pressed" from="HBoxContainer/AddButton1" to="." method="_add_new" binds= [1]]
+[connection signal="pressed" from="HBoxContainer/DelButton0" to="." method="_remove" binds= [0]]
+[connection signal="pressed" from="HBoxContainer/DelButton1" to="." method="_remove" binds= [1]]

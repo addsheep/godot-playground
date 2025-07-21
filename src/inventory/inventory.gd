@@ -65,6 +65,9 @@ func get_item_data(type: String) -> Item:
 	var slot: Slot = _slots.get(type, Slot.new(null))
 	return slot.item
 
+## Returns all slots.
+func get_all() -> Dictionary:
+	return _slots
 
 ## Write the inventory contents to the disk.
 func save() -> void:
