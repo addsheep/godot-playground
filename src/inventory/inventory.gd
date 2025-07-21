@@ -1,28 +1,18 @@
 class_name Inventory extends Resource
-## A simple inventory implementation that includes all item types and data within the class.
-
-## All item types available to add or remove from the inventory.
-enum ItemTypes { KEY, COIN, BOMB, RED_WAND, BLUE_WAND, GREEN_WAND }
-
-#TODO: I expect we'll want to have a proper inventory definition somewhere. Some folks advocate for
-# spreadsheets, but whatever it is should probably integrate with the editor so that level designers
-# can easily pick from items from a dropdown list, or something similar.
-## Icons associated with the [member ItemTypes].
-const ICONS: = {
-}
 
 const INVENTORY_PATH: = "user://inventory.tres"
 
-## Emitted when the count of a given item type changes.
-signal item_changed(type: ItemTypes)
+# Emitted when a slot changes
+signal slot_changed(item: Item, old_amount: int, new_amount: int)
 
-# Keep track of what is in the inventory. Dictionary keys are an ItemType, values are the amount.
-@export var _items: = {}
+class Slot:
+	var item: Item
+	var amount: int
+	func _init(im: Item, at: int = 0) -> void:
+		item = im
+		amount = at
 
-
-func _init() -> void:
-	for item_name in ItemTypes:
-		_items[ItemTypes[item_name]] = 0
+@export var _slots := {} # type -> Slot
 
 
 ## Load the [Inventory] from file or create a new resource, if it was missing. Godot caches calls, 
@@ -44,30 +34,36 @@ static func restore() -> Inventory:
 
 
 ## Increment the count of a given item by one, adding it to the inventory if it does not exist.
-func add(item_type: ItemTypes, amount: = 1) -> void:
+func add(item: Item, amount: = 1) -> void:
 	# Note that adding negative numbers is possible. Prevent having a total of negative items.
 	# NPC: "You cannot have negative potatoes."
-	var old_amount: = _items.get(item_type, 0) as int
-	_items[item_type] = maxi(old_amount+amount, 0)
+	var slot: Slot = _slots.get_or_add(item.type, Slot.new(item))
+	var old_amount: = slot.amount
+	var new_amount = maxi(old_amount+amount, 0)
+	slot.amount = new_amount
 	
-	item_changed.emit(item_type)
+	slot_changed.emit(item, old_amount, new_amount)
 
 
 ## Decrement the count of a given item by one.
 ## The item will be removed entirely if there are none remaining. Removing an item that is not
 ## posessed will do nothing.
-func remove(item_type: ItemTypes, amount: = 1) -> void:
-	add(item_type, -amount)
+func remove(item_type: String, amount: = 1) -> void:
+	var slot: Slot = _slots.get(item_type)
+	if slot == null:
+		return
+	add(slot.item, -amount)
 
 
 ## Returns the number of a certain item type posessed by the player.
-func get_item_count(item_type: ItemTypes) -> int:
-	return _items.get(item_type, 0)
+func get_item_count(item_type: String) -> int:
+	return _slots.get(item_type, Slot.new(null)).amount
 
 
-## Returns the icon associated with a given item type.
-static func get_item_icon(item_type: ItemTypes) -> Texture:
-	return ICONS.get(item_type, null)
+## Returns the Item associated with a given item type.
+func get_item_data(type: String) -> Item:
+	var slot: Slot = _slots.get(type, Slot.new(null))
+	return slot.item
 
 
 ## Write the inventory contents to the disk.
