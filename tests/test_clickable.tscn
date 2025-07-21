@@ -1,7 +1,9 @@
-[gd_scene load_steps=17 format=3 uid="uid://djk1sebtueu62"]
+[gd_scene load_steps=19 format=3 uid="uid://djk1sebtueu62"]
 
 [ext_resource type="PackedScene" uid="uid://dwjdpucscrr7m" path="res://src/clickable/clickable.tscn" id="1_x8q5o"]
 [ext_resource type="Script" uid="uid://c7n1mamnfj07v" path="res://src/common/perform_look.gd" id="2_4rxwg"]
+[ext_resource type="Script" uid="uid://bchl7kx6fwell" path="res://src/common/perform_dialog.gd" id="3_liekk"]
+[ext_resource type="PackedScene" uid="uid://cuqg3eu58tvfr" path="res://src/dialog/dialog.tscn" id="4_2ixwf"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_0xm2m"]
 animation = &"look"
@@ -100,6 +102,13 @@ script = ExtResource("2_4rxwg")
 description = "Test look"
 animation_tree = NodePath("../../../AnimationTree")
 metadata/_custom_type_script = "uid://c7n1mamnfj07v"
+
+[node name="Talk" type="Node" parent="Clickable/Interactions" index="1" node_paths=PackedStringArray("dialog")]
+script = ExtResource("3_liekk")
+madtalk_sheet_id = "test_dialog_0"
+dialog = NodePath("Dialog")
+
+[node name="Dialog" parent="Clickable/Interactions/Talk" instance=ExtResource("4_2ixwf")]
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource("AnimationNodeStateMachine_7mycd")
