@@ -32,7 +32,7 @@ window/subwindows/embed_subwindows=false
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/madtalk/plugin.cfg")
+enabled=PackedStringArray("res://addons/font_auto_size_labels/plugin.cfg", "res://addons/madtalk/plugin.cfg")
 
 [input]
 
