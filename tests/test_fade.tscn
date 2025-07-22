@@ -1,0 +1,44 @@
+[gd_scene load_steps=2 format=3 uid="uid://ef6los3ts4pc"]
+
+[ext_resource type="Script" uid="uid://cv3lb6eu4x3rb" path="res://src/effects/auto_fade.gd" id="1_oyhwi"]
+
+[node name="TestFade" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+text = "fade in"
+
+[node name="Button2" type="Button" parent="."]
+layout_mode = 0
+offset_left = 178.0
+offset_right = 251.0
+offset_bottom = 31.0
+text = "fade out
+"
+
+[node name="fade" type="Control" parent="." node_paths=PackedStringArray("effect_target")]
+anchors_preset = 0
+offset_left = 2.0
+offset_top = 171.0
+offset_right = 42.0
+offset_bottom = 211.0
+script = ExtResource("1_oyhwi")
+effect_target = NodePath("../ColorRect")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 103.0
+offset_top = 84.0
+offset_right = 143.0
+offset_bottom = 124.0
+
+[connection signal="pressed" from="Button" to="fade" method="show"]
+[connection signal="pressed" from="Button2" to="fade" method="hide"]
