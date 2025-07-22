@@ -18,6 +18,8 @@ func _ready() -> void:
 	items[1].icon = load("res://tests/assets/robot.png")
 	inventory_ui.inventory.add(items[1], 3)
 
+	inventory_ui.item_gui_input.connect(_on_item_gui_event)
+
 
 func _add_new(index: int) -> void:
 	if index < items.size():
@@ -27,3 +29,8 @@ func _add_new(index: int) -> void:
 func _remove(index: int) -> void:
 	if index < items.size():
 		inventory_ui.inventory.remove(items[index].type, 1)
+
+
+func _on_item_gui_event(event: InputEvent, item: Item) -> void:
+	if event.is_action_pressed("left_click"):
+		print_debug(item.display_name)

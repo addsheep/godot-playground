@@ -1,4 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://ua0ghmjaouf"]
+[gd_scene load_steps=3 format=3 uid="uid://ua0ghmjaouf"]
+
+[ext_resource type="Script" uid="uid://cv3lb6eu4x3rb" path="res://src/effects/auto_fade.gd" id="1_q8b08"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yaj0p"]
 content_margin_left = 8.0
@@ -39,3 +41,11 @@ text = "how are you?
 I'm fine.
 And you?
 I'm fine too."
+
+[node name="AutoFade" type="Control" parent="." node_paths=PackedStringArray("effect_target")]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_q8b08")
+effect_target = NodePath("../PanelContainer")

@@ -1,0 +1,21 @@
+[gd_scene load_steps=2 format=3 uid="uid://c3buw5p48utf2"]
+
+[ext_resource type="PackedScene" uid="uid://bgiuk7jpdbis4" path="res://src/toast/toast.tscn" id="1_3iwof"]
+
+[node name="TestToast" type="Node"]
+
+[node name="Button" type="Button" parent="."]
+offset_right = 8.0
+offset_bottom = 8.0
+text = "toast 1"
+
+[node name="Button2" type="Button" parent="."]
+offset_left = 157.0
+offset_right = 218.0
+offset_bottom = 31.0
+text = "toast 2"
+
+[node name="Toast" parent="." instance=ExtResource("1_3iwof")]
+
+[connection signal="pressed" from="Button" to="Toast" method="show" binds= ["hello"]]
+[connection signal="pressed" from="Button2" to="Toast" method="show" binds= ["world!"]]

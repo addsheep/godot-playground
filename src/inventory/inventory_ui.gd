@@ -1,5 +1,7 @@
 class_name InventoryUI extends Node
 
+signal item_gui_input(event: InputEvent, item: Item)
+
 @export var inventory: Inventory
 @export var icon_path: String = "Icon"  # path of the item icon relative to the cell
 @export var amount_path: String = "Label"  # path of the amount label relative to the cell
@@ -32,6 +34,8 @@ func _add_cell(item: Item, amount: int) -> void:
 	add_child(cell)
 	cell.show()
 	_item_cell_map[item] = cell
+
+	cell.gui_input.connect(item_gui_input.emit.bind(item))
 
 
 func _remove_cell(item: Item) -> void:
