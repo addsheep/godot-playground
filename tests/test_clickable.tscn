@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://djk1sebtueu62"]
+[gd_scene load_steps=13 format=3 uid="uid://djk1sebtueu62"]
 
 [ext_resource type="PackedScene" uid="uid://dwjdpucscrr7m" path="res://src/clickable/clickable.tscn" id="1_x8q5o"]
 [ext_resource type="Script" uid="uid://c7n1mamnfj07v" path="res://src/scripts/perform_look.gd" id="2_4rxwg"]
@@ -8,117 +8,6 @@
 [ext_resource type="Texture2D" uid="uid://3yr87ikvahav" path="res://addons/resource_databases/editor_only/ui/icons/tick_clean.svg" id="6_dkoq0"]
 [ext_resource type="Script" uid="uid://b0y802bsau21n" path="res://src/scripts/item_data.gd" id="7_pxdxa"]
 [ext_resource type="Resource" uid="uid://mrhqlq85qb1f" path="res://tests/assets/test.tres" id="8_f7qxq"]
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_0xm2m"]
-animation = &"look"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_7mycd"]
-advance_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_272bh"]
-switch_mode = 2
-advance_mode = 2
-
-[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_0xm2m"]
-states/look/node = SubResource("AnimationNodeAnimation_0xm2m")
-states/look/position = Vector2(520, 103)
-transitions = ["Start", "look", SubResource("AnimationNodeStateMachineTransition_7mycd"), "look", "End", SubResource("AnimationNodeStateMachineTransition_272bh")]
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ig7tw"]
-animation = &"idle"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_1bvp3"]
-advance_mode = 2
-
-[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_ig7tw"]
-state_machine_type = 1
-states/idle/node = SubResource("AnimationNodeAnimation_ig7tw")
-states/idle/position = Vector2(547, 111)
-transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_1bvp3")]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_0xm2m"]
-advance_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_h2yge"]
-advance_mode = 2
-advance_condition = &"looking"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_lquwl"]
-switch_mode = 2
-advance_mode = 2
-
-[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_7mycd"]
-states/Looking/node = SubResource("AnimationNodeStateMachine_0xm2m")
-states/Looking/position = Vector2(692, 68)
-states/MovementStateMachine/node = SubResource("AnimationNodeStateMachine_ig7tw")
-states/MovementStateMachine/position = Vector2(471, 203)
-states/Start/position = Vector2(213, 86)
-transitions = ["Start", "MovementStateMachine", SubResource("AnimationNodeStateMachineTransition_0xm2m"), "MovementStateMachine", "Looking", SubResource("AnimationNodeStateMachineTransition_h2yge"), "Looking", "MovementStateMachine", SubResource("AnimationNodeStateMachineTransition_lquwl")]
-
-[sub_resource type="Animation" id="Animation_f7qxq"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("../../../Clickable_Visual#Polygon2D:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("../../../Clickable_Visual#Polygon2D:color")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
-}
-
-[sub_resource type="Animation" id="Animation_h2yge"]
-resource_name = "idle"
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("../../../Clickable_Visual#Polygon2D:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_ig7tw"]
-resource_name = "look"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("../../../Clickable_Visual#Polygon2D:color")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.366667, 0.766667),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 0.796078, 1, 1), Color(1, 1, 1, 1)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_h2yge"]
-_data = {
-&"RESET": SubResource("Animation_f7qxq"),
-&"idle": SubResource("Animation_h2yge"),
-&"look": SubResource("Animation_ig7tw")
-}
 
 [sub_resource type="Resource" id="Resource_twrno"]
 script = ExtResource("7_pxdxa")
@@ -197,28 +86,14 @@ _data = {
 [node name="Object" type="Node2D" parent="."]
 position = Vector2(138, 141)
 
-[node name="Clickable_Visual#Polygon2D" type="Polygon2D" parent="Object"]
-polygon = PackedVector2Array(-80, -80, 129, -57, -7, 125)
+[node name="Clickable" parent="Object" node_paths=PackedStringArray("player_node") instance=ExtResource("1_x8q5o")]
+player_node = NodePath("../../Player")
+range = 300.0
 
-[node name="Clickable" parent="Object" instance=ExtResource("1_x8q5o")]
-
-[node name="Look" type="Node" parent="Object/Clickable/Interactions" index="0" node_paths=PackedStringArray("animation_tree")]
+[node name="Look" type="Node" parent="Object/Clickable/Interactions" index="0"]
 script = ExtResource("2_4rxwg")
 description = "Test look"
-animation_tree = NodePath("AnimationTree")
 metadata/_custom_type_script = "uid://c7n1mamnfj07v"
-
-[node name="AnimationTree" type="AnimationTree" parent="Object/Clickable/Interactions/Look"]
-root_node = NodePath("../../Take")
-tree_root = SubResource("AnimationNodeStateMachine_7mycd")
-anim_player = NodePath("AnimationPlayer")
-parameters/conditions/looking = false
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Object/Clickable/Interactions/Look/AnimationTree"]
-root_node = NodePath("../../../Take")
-libraries = {
-&"": SubResource("AnimationLibrary_h2yge")
-}
 
 [node name="Talk" type="Node" parent="Object/Clickable/Interactions" index="1" node_paths=PackedStringArray("dialog")]
 script = ExtResource("3_liekk")
@@ -238,4 +113,42 @@ libraries = {
 &"": SubResource("AnimationLibrary_daoxy")
 }
 
+[node name="ObjectTooFar" type="Node2D" parent="."]
+position = Vector2(138, 141)
+
+[node name="Clickable" parent="ObjectTooFar" node_paths=PackedStringArray("player_node") instance=ExtResource("1_x8q5o")]
+offset_left = 389.0
+offset_top = 13.0
+offset_right = 439.0
+offset_bottom = 63.0
+player_node = NodePath("../../Player")
+
+[node name="Look" type="Node" parent="ObjectTooFar/Clickable/Interactions" index="0"]
+script = ExtResource("2_4rxwg")
+description = "Test look"
+metadata/_custom_type_script = "uid://c7n1mamnfj07v"
+
+[node name="Talk" type="Node" parent="ObjectTooFar/Clickable/Interactions" index="1" node_paths=PackedStringArray("dialog")]
+script = ExtResource("3_liekk")
+madtalk_sheet_id = "test_dialog_0"
+dialog = NodePath("Dialog")
+
+[node name="Dialog" parent="ObjectTooFar/Clickable/Interactions/Talk" instance=ExtResource("4_2ixwf")]
+
+[node name="Take" type="Node" parent="ObjectTooFar/Clickable/Interactions" index="2" node_paths=PackedStringArray("animation_player")]
+script = ExtResource("5_f7qxq")
+item = SubResource("Resource_twrno")
+inventory = ExtResource("8_f7qxq")
+animation_player = NodePath("AnimationPlayer")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="ObjectTooFar/Clickable/Interactions/Take"]
+libraries = {
+&"": SubResource("AnimationLibrary_daoxy")
+}
+
+[node name="Player" type="Polygon2D" parent="."]
+position = Vector2(275, 136)
+polygon = PackedVector2Array(-9, -57, 10, 84, -13, 84)
+
 [editable path="Object/Clickable"]
+[editable path="ObjectTooFar/Clickable"]

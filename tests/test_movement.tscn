@@ -1,0 +1,46 @@
+[gd_scene load_steps=5 format=3 uid="uid://beumbtphk0kan"]
+
+[ext_resource type="Script" uid="uid://1gh0myqdi6bq" path="res://src/scripts/click_movement.gd" id="1_vjlvy"]
+[ext_resource type="PackedScene" uid="uid://dwjdpucscrr7m" path="res://src/clickable/clickable.tscn" id="2_ih7aq"]
+[ext_resource type="Script" uid="uid://c7n1mamnfj07v" path="res://src/scripts/perform_look.gd" id="3_futri"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vjlvy"]
+radius = 24.0832
+
+[node name="TestMovement" type="Node2D"]
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+position = Vector2(171, 96)
+
+[node name="Polygon2D" type="Polygon2D" parent="CharacterBody2D"]
+polygon = PackedVector2Array(-14, -19, 14, -19, 14, 14, -15, 14)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="CharacterBody2D"]
+polygon = PackedVector2Array(-16, -22, 16, -22, 17, 18, -17, 17)
+
+[node name="movement" type="Node" parent="CharacterBody2D" node_paths=PackedStringArray("body")]
+script = ExtResource("1_vjlvy")
+body = NodePath("..")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(253, 117)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("CircleShape2D_vjlvy")
+
+[node name="Polygon2D" type="Polygon2D" parent="StaticBody2D"]
+polygon = PackedVector2Array(-17, -17, 4, -24, 20, -13, 16, 19, -15, 19, -24, 1)
+
+[node name="Object" type="Node2D" parent="."]
+position = Vector2(138, 141)
+
+[node name="Clickable" parent="Object" node_paths=PackedStringArray("player_node") instance=ExtResource("2_ih7aq")]
+player_node = NodePath("../../CharacterBody2D")
+range = 300.0
+
+[node name="Look" type="Node" parent="Object/Clickable/Interactions" index="0"]
+script = ExtResource("3_futri")
+description = "Test look"
+metadata/_custom_type_script = "uid://c7n1mamnfj07v"
+
+[editable path="Object/Clickable"]
