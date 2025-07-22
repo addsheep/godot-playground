@@ -1,13 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://bwxuyaw8nysgx"]
+[gd_scene load_steps=4 format=3 uid="uid://bwxuyaw8nysgx"]
 
 [ext_resource type="PackedScene" uid="uid://cf3pjhuf52brd" path="res://src/inventory/inventory_grid.tscn" id="1_i0jss"]
 [ext_resource type="Script" uid="uid://obyp0hfmosoq" path="res://tests/test_inventory.gd" id="1_wp8uh"]
-[ext_resource type="Script" uid="uid://dxk5qiebq6o2f" path="res://src/inventory/inventory.gd" id="2_wp8uh"]
-
-[sub_resource type="Resource" id="Resource_372ms"]
-script = ExtResource("2_wp8uh")
-_slots = {}
-metadata/_custom_type_script = "uid://dxk5qiebq6o2f"
+[ext_resource type="Resource" uid="uid://mrhqlq85qb1f" path="res://tests/assets/test.tres" id="3_wp8uh"]
 
 [node name="TestInventory" type="Control"]
 layout_mode = 3
@@ -20,7 +15,7 @@ script = ExtResource("1_wp8uh")
 
 [node name="InventoryUi" parent="." instance=ExtResource("1_i0jss")]
 layout_mode = 0
-inventory = SubResource("Resource_372ms")
+inventory = ExtResource("3_wp8uh")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 0

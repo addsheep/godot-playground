@@ -8,11 +8,12 @@ signal item_gui_input(event: InputEvent, item: Item)
 
 @onready var _cell_template: Control = %Cell
 
-var _item_cell_map: Dictionary
+var _item_cell_map: Dictionary  # type -> cell
 
 
 func _ready() -> void:
 	_cell_template.hide()
+	_load_all()
 	inventory.slot_changed.connect(_on_inventory_changed)
 
 
@@ -33,16 +34,16 @@ func _add_cell(item: Item, amount: int) -> void:
 
 	add_child(cell)
 	cell.show()
-	_item_cell_map[item] = cell
+	_item_cell_map[item.type] = cell
 
 	cell.gui_input.connect(item_gui_input.emit.bind(item))
 
 
 func _remove_cell(item: Item) -> void:
-	var cell: Control = _item_cell_map.get(item)
+	var cell: Control = _item_cell_map.get(item.type)
 	if cell:
 		cell.queue_free()
-		_item_cell_map.erase(item)
+		_item_cell_map.erase(item.type)
 
 
 func _on_inventory_changed(item: Item, old_amount: int, new_amount: int) -> void:
@@ -50,7 +51,7 @@ func _on_inventory_changed(item: Item, old_amount: int, new_amount: int) -> void
 		_remove_cell(item)
 		return
 
-	var cell: Control = _item_cell_map.get(item)
+	var cell: Control = _item_cell_map.get(item.type)
 	if cell == null:
 		_add_cell(item, new_amount)
 	else:

@@ -1,9 +1,13 @@
-[gd_scene load_steps=19 format=3 uid="uid://djk1sebtueu62"]
+[gd_scene load_steps=28 format=3 uid="uid://djk1sebtueu62"]
 
 [ext_resource type="PackedScene" uid="uid://dwjdpucscrr7m" path="res://src/clickable/clickable.tscn" id="1_x8q5o"]
 [ext_resource type="Script" uid="uid://c7n1mamnfj07v" path="res://src/scripts/perform_look.gd" id="2_4rxwg"]
 [ext_resource type="Script" uid="uid://bchl7kx6fwell" path="res://src/scripts/perform_dialog.gd" id="3_liekk"]
 [ext_resource type="PackedScene" uid="uid://cuqg3eu58tvfr" path="res://src/dialog/dialog.tscn" id="4_2ixwf"]
+[ext_resource type="Script" uid="uid://cc7oy4nwvhp2o" path="res://src/scripts/perform_take.gd" id="5_f7qxq"]
+[ext_resource type="Texture2D" uid="uid://3yr87ikvahav" path="res://addons/resource_databases/editor_only/ui/icons/tick_clean.svg" id="6_dkoq0"]
+[ext_resource type="Script" uid="uid://b0y802bsau21n" path="res://src/scripts/item_data.gd" id="7_pxdxa"]
+[ext_resource type="Resource" uid="uid://mrhqlq85qb1f" path="res://tests/assets/test.tres" id="8_f7qxq"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_0xm2m"]
 animation = &"look"
@@ -51,20 +55,47 @@ states/MovementStateMachine/position = Vector2(471, 203)
 states/Start/position = Vector2(213, 86)
 transitions = ["Start", "MovementStateMachine", SubResource("AnimationNodeStateMachineTransition_0xm2m"), "MovementStateMachine", "Looking", SubResource("AnimationNodeStateMachineTransition_h2yge"), "Looking", "MovementStateMachine", SubResource("AnimationNodeStateMachineTransition_lquwl")]
 
-[sub_resource type="Animation" id="Animation_h2yge"]
-resource_name = "idle"
-loop_mode = 1
+[sub_resource type="Animation" id="Animation_f7qxq"]
+length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Clickable_Visual#Polygon2D:position")
+tracks/0/path = NodePath("../../../Clickable_Visual#Polygon2D:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(213, 118)]
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../../../Clickable_Visual#Polygon2D:color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_h2yge"]
+resource_name = "idle"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../../../Clickable_Visual#Polygon2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_ig7tw"]
@@ -72,53 +103,139 @@ resource_name = "look"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Clickable_Visual#Polygon2D:position")
+tracks/0/path = NodePath("../../../Clickable_Visual#Polygon2D:color")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.833333),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0, 0.366667, 0.766667),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector2(216, 118), Vector2(495, 118)]
+"values": [Color(1, 1, 1, 1), Color(1, 0.796078, 1, 1), Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_h2yge"]
 _data = {
+&"RESET": SubResource("Animation_f7qxq"),
 &"idle": SubResource("Animation_h2yge"),
 &"look": SubResource("Animation_ig7tw")
 }
 
+[sub_resource type="Resource" id="Resource_twrno"]
+script = ExtResource("7_pxdxa")
+type = "example"
+display_name = "example"
+description = "haha lala"
+icon = ExtResource("6_dkoq0")
+metadata/_custom_type_script = "uid://b0y802bsau21n"
+
+[sub_resource type="Animation" id="Animation_dih17"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../../..:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_r2eyd"]
+resource_name = "taken"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../../..:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.0333333, 0.98),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1e-05, 1e-05)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../../..")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.966667),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../..")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"hide"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_daoxy"]
+_data = {
+&"RESET": SubResource("Animation_dih17"),
+&"taken": SubResource("Animation_r2eyd")
+}
+
 [node name="Main" type="Node2D"]
 
-[node name="Clickable_Visual#Polygon2D" type="Polygon2D" parent="."]
-position = Vector2(213, 118)
+[node name="Object" type="Node2D" parent="."]
+position = Vector2(138, 141)
+
+[node name="Clickable_Visual#Polygon2D" type="Polygon2D" parent="Object"]
 polygon = PackedVector2Array(-80, -80, 129, -57, -7, 125)
 
-[node name="Clickable" parent="." instance=ExtResource("1_x8q5o")]
-position = Vector2(213, 117)
+[node name="Clickable" parent="Object" instance=ExtResource("1_x8q5o")]
 
-[node name="Look" type="Node" parent="Clickable/Interactions" index="0" node_paths=PackedStringArray("animation_tree")]
+[node name="Look" type="Node" parent="Object/Clickable/Interactions" index="0" node_paths=PackedStringArray("animation_tree")]
 script = ExtResource("2_4rxwg")
 description = "Test look"
-animation_tree = NodePath("../../../AnimationTree")
+animation_tree = NodePath("AnimationTree")
 metadata/_custom_type_script = "uid://c7n1mamnfj07v"
 
-[node name="Talk" type="Node" parent="Clickable/Interactions" index="1" node_paths=PackedStringArray("dialog")]
-script = ExtResource("3_liekk")
-madtalk_sheet_id = "test_dialog_0"
-dialog = NodePath("Dialog")
-
-[node name="Dialog" parent="Clickable/Interactions/Talk" instance=ExtResource("4_2ixwf")]
-
-[node name="AnimationTree" type="AnimationTree" parent="."]
+[node name="AnimationTree" type="AnimationTree" parent="Object/Clickable/Interactions/Look"]
+root_node = NodePath("../../Take")
 tree_root = SubResource("AnimationNodeStateMachine_7mycd")
 anim_player = NodePath("AnimationPlayer")
 parameters/conditions/looking = false
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="AnimationTree"]
-root_node = NodePath("../..")
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Object/Clickable/Interactions/Look/AnimationTree"]
+root_node = NodePath("../../../Take")
 libraries = {
 &"": SubResource("AnimationLibrary_h2yge")
 }
 
-[editable path="Clickable"]
+[node name="Talk" type="Node" parent="Object/Clickable/Interactions" index="1" node_paths=PackedStringArray("dialog")]
+script = ExtResource("3_liekk")
+madtalk_sheet_id = "test_dialog_0"
+dialog = NodePath("Dialog")
+
+[node name="Dialog" parent="Object/Clickable/Interactions/Talk" instance=ExtResource("4_2ixwf")]
+
+[node name="Take" type="Node" parent="Object/Clickable/Interactions" index="2" node_paths=PackedStringArray("animation_player")]
+script = ExtResource("5_f7qxq")
+item = SubResource("Resource_twrno")
+inventory = ExtResource("8_f7qxq")
+animation_player = NodePath("AnimationPlayer")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Object/Clickable/Interactions/Take"]
+libraries = {
+&"": SubResource("AnimationLibrary_daoxy")
+}
+
+[editable path="Object/Clickable"]
