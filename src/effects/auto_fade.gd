@@ -3,15 +3,19 @@ extends CanvasItem
 
 @export var effect_target: CanvasItem
 @export var delay: float = 0.5
+@export var start_hidden: bool
 
 var saved_modulate: Color
 var tween: Tween
 
 
 func _ready() -> void:
-	visibility_changed.connect(_on_visibility_changed)
 	saved_modulate = effect_target.modulate
+	if start_hidden:
+		effect_target.hide()
 	visible = effect_target.visible
+
+	visibility_changed.connect(_on_visibility_changed)
 
 
 func _on_visibility_changed() -> void:

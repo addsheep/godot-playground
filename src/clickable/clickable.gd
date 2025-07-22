@@ -8,7 +8,7 @@ extends Area2D
 var _interaction_nodes: Array[Node]
 
 @onready var _gui: Control = $GUI
-@onready var _menu: Control = $GUI/Menu
+@onready var _menu: Control = $GUI/AutoFadeMenu
 
 ## Node overrides
 
