@@ -20,4 +20,3 @@ func _input(event: InputEvent) -> void:
 	if _popup and event.is_action_pressed("left_click"):
 		_popup.queue_free()
 		_popup = null
-		get_viewport().set_input_as_handled()

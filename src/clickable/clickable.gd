@@ -21,10 +21,9 @@ func _ready() -> void:
 
 
 ## Close menu on click anywhere
-func _unhandled_input(event: InputEvent) -> void:
+func _input(event: InputEvent) -> void:
 	if _menu.visible and event.is_action_pressed("left_click"):
 		_menu.hide()
-		accept_event()
 
 
 ## Show menu on click
