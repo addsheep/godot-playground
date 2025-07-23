@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://beumbtphk0kan"]
+[gd_scene load_steps=6 format=3 uid="uid://beumbtphk0kan"]
 
 [ext_resource type="Script" uid="uid://1gh0myqdi6bq" path="res://src/scripts/click_movement.gd" id="1_vjlvy"]
 [ext_resource type="PackedScene" uid="uid://dwjdpucscrr7m" path="res://src/clickable/clickable.tscn" id="2_ih7aq"]
-[ext_resource type="Script" uid="uid://c7n1mamnfj07v" path="res://src/scripts/perform_look.gd" id="3_futri"]
+[ext_resource type="Script" uid="uid://bchl7kx6fwell" path="res://src/scripts/perform_dialog.gd" id="3_pogcj"]
+[ext_resource type="PackedScene" uid="uid://cuqg3eu58tvfr" path="res://src/dialog/dialog.tscn" id="4_bka7l"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_vjlvy"]
 radius = 24.0832
@@ -38,9 +39,12 @@ position = Vector2(138, 141)
 player_node = NodePath("../../CharacterBody2D")
 range = 300.0
 
-[node name="Look" type="Node" parent="Object/Clickable/Interactions" index="0"]
-script = ExtResource("3_futri")
-description = "Test look"
+[node name="Talk" type="Node" parent="Object/Clickable/Interactions" index="0" node_paths=PackedStringArray("dialog")]
+script = ExtResource("3_pogcj")
+madtalk_sheet_id = "test_dialog_0"
+dialog = NodePath("../../../../Dialog")
 metadata/_custom_type_script = "uid://c7n1mamnfj07v"
+
+[node name="Dialog" parent="." instance=ExtResource("4_bka7l")]
 
 [editable path="Object/Clickable"]
