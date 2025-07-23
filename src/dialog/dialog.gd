@@ -19,7 +19,7 @@ func get_started_times(sheet: String, sequence: int = 0) -> bool:
 func _ready() -> void:
 	_main.gui_input.connect(_gui_input)
 	_madtalk.dialog_started.connect(_on_dialog_started)
-	_madtalk.dialog_finished.connect(dialog_finished.emit)
+	_madtalk.dialog_finished.connect(_on_dialog_finished)
 
 
 func _gui_input(event: InputEvent) -> void:
@@ -41,3 +41,8 @@ func _unhandled_key_input(event: InputEvent) -> void:
 func _on_dialog_started(sheet_name: String, sequence: int) -> void:
 	var sequence_table: Dictionary = _dialogs_started.get_or_add(sheet_name, {})
 	sequence_table[sequence] = sequence_table.get(sequence, 0) + 1
+
+
+func _on_dialog_finished(sheet: String, sequence: int) -> void:
+	await _main.visibility_changed
+	dialog_finished.emit(sheet, sequence)

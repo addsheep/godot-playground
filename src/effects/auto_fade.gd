@@ -1,4 +1,4 @@
-extends CanvasItem
+class_name AutoFade extends CanvasItem
 ## Call show/hide on this node will fade-in/fade-out the target node.
 
 @export var effect_target: CanvasItem
