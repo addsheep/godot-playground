@@ -1,0 +1,147 @@
+[gd_scene load_steps=9 format=3 uid="uid://dx32fxlnnhmds"]
+
+[ext_resource type="Script" uid="uid://gcbdmpbqpcyk" path="res://src/cutscene/cutscene.gd" id="1_eewff"]
+[ext_resource type="Script" uid="uid://sypytevx3f1d" path="res://src/dialog/dialog.gd" id="2_fyndt"]
+[ext_resource type="Script" uid="uid://c6av3xe4m2ujl" path="res://addons/madtalk/runtime/madtalk_runtime.gd" id="3_kmhfv"]
+[ext_resource type="AudioStream" uid="uid://dr553b0ej26vk" path="res://assets/sfx/click.wav" id="4_rlaii"]
+[ext_resource type="Script" uid="uid://cv3lb6eu4x3rb" path="res://src/effects/auto_fade.gd" id="5_5mrjc"]
+
+[sub_resource type="Animation" id="Animation_fyndt"]
+resource_name = "default"
+length = 0.1
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimationPlayer/Dialog")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": ["game_start", 0],
+"method": &"start"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_kmhfv"]
+_data = {
+&"default": SubResource("Animation_fyndt")
+}
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bhcbb"]
+
+[node name="Main" type="Node2D"]
+
+[node name="CutScene" type="Node" parent="." node_paths=PackedStringArray("animation_player")]
+script = ExtResource("1_eewff")
+animation_player = NodePath("AnimationPlayer")
+auto_end = null
+metadata/_custom_type_script = "uid://gcbdmpbqpcyk"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CutScene"]
+libraries = {
+&"": SubResource("AnimationLibrary_kmhfv")
+}
+
+[node name="Dialog" type="Node" parent="CutScene/AnimationPlayer"]
+script = ExtResource("2_fyndt")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="CutScene/AnimationPlayer/Dialog"]
+
+[node name="DialogMain" type="Control" parent="CutScene/AnimationPlayer/Dialog/CanvasLayer"]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MessagePanel" type="Panel" parent="CutScene/AnimationPlayer/Dialog/CanvasLayer/DialogMain"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -400.0
+offset_top = -146.0
+offset_right = 400.0
+offset_bottom = 146.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="MessageRichLabel" type="RichTextLabel" parent="CutScene/AnimationPlayer/Dialog/CanvasLayer/DialogMain/MessagePanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = 16.0
+offset_right = -20.0
+offset_bottom = -16.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+bbcode_enabled = true
+text = "Lorem ipsum"
+scroll_active = false
+
+[node name="MenuPanel" type="Panel" parent="CutScene/AnimationPlayer/Dialog/CanvasLayer/DialogMain"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -81.5
+offset_top = -97.5
+offset_right = 81.5
+offset_bottom = 97.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_bhcbb")
+metadata/_edit_group_ = true
+
+[node name="ButtonContainer" type="VBoxContainer" parent="CutScene/AnimationPlayer/Dialog/CanvasLayer/DialogMain/MenuPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Madtalk" type="Node" parent="CutScene/AnimationPlayer/Dialog"]
+script = ExtResource("3_kmhfv")
+DialogMainControl = NodePath("../AutoFadeDialogMain")
+DialogMessageBox = NodePath("../AutoFadeMessageBox")
+DialogMessageLabel = NodePath("../CanvasLayer/DialogMain/MessagePanel/MessageRichLabel")
+DialogButtonsMenu = NodePath("../AutoFadeMenu")
+DialogButtonsContainer = NodePath("../CanvasLayer/DialogMain/MenuPanel/ButtonContainer")
+KeyPressAudioStreamPlayer = NodePath("AudioStreamPlayer")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="CutScene/AnimationPlayer/Dialog/Madtalk"]
+stream = ExtResource("4_rlaii")
+
+[node name="AutoFadeDialogMain" type="Control" parent="CutScene/AnimationPlayer/Dialog" node_paths=PackedStringArray("effect_target")]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("5_5mrjc")
+effect_target = NodePath("../CanvasLayer/DialogMain")
+
+[node name="AutoFadeMessageBox" type="Control" parent="CutScene/AnimationPlayer/Dialog" node_paths=PackedStringArray("effect_target")]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("5_5mrjc")
+effect_target = NodePath("../CanvasLayer/DialogMain/MessagePanel")
+
+[node name="AutoFadeMenu" type="Control" parent="CutScene/AnimationPlayer/Dialog" node_paths=PackedStringArray("effect_target")]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("5_5mrjc")
+effect_target = NodePath("../CanvasLayer/DialogMain/MenuPanel")
+
+[connection signal="dialog_finished" from="CutScene/AnimationPlayer/Dialog" to="CutScene" method="end_cutscene" unbinds=2]

@@ -1,5 +1,7 @@
 class_name Dialog extends Node
 
+signal dialog_finished(sheet: String, sequence: int)
+
 @onready var _madtalk: Node = $"Madtalk"
 @onready var _main: Control = %DialogMain
 
@@ -17,6 +19,7 @@ func get_started_times(sheet: String, sequence: int = 0) -> bool:
 func _ready() -> void:
 	_main.gui_input.connect(_gui_input)
 	_madtalk.dialog_started.connect(_on_dialog_started)
+	_madtalk.dialog_finished.connect(dialog_finished.emit)
 
 
 func _gui_input(event: InputEvent) -> void:
