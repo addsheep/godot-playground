@@ -6,6 +6,44 @@
 [ext_resource type="Script" uid="uid://b2mrnotqjr75d" path="res://addons/madtalk/components/resources/DialogNodeData.gd" id="4_f2ijm"]
 [ext_resource type="Script" uid="uid://butd1fwy4a2hn" path="res://addons/madtalk/components/resources/DialogSheetData.gd" id="5_vkpn8"]
 
+[sub_resource type="Resource" id="Resource_gi4cx"]
+script = ExtResource("2_48vp3")
+item_type = 0
+connected_to_id = -1
+message_speaker_id = ""
+message_speaker_variant = ""
+message_voice_clip = ""
+message_text = "Dear Teddy,
+
+How are you? How is your summer? I miss you!
+
+Love,
+Aunt"
+message_voice_clip_locales = {}
+message_text_locales = {}
+message_hide_on_end = 0
+condition_type = 10
+condition_values = []
+effect_type = 10
+effect_values = []
+
+[sub_resource type="Resource" id="kur6e"]
+script = ExtResource("4_f2ijm")
+sequence_id = 0
+position = Vector2(0, 0)
+comment = ""
+items = [SubResource("Resource_gi4cx")]
+options = []
+continue_sequence_id = -1
+continue_port_index = 0
+
+[sub_resource type="Resource" id="v4udn"]
+script = ExtResource("5_vkpn8")
+sheet_id = "game_start"
+sheet_description = "auto played at the beginning of the game"
+next_sequence_id = 1
+nodes = [SubResource("kur6e")]
+
 [sub_resource type="Resource" id="gi4cx"]
 script = ExtResource("2_48vp3")
 item_type = 0
@@ -108,44 +146,6 @@ sheet_id = "test_dialog_0"
 sheet_description = ""
 next_sequence_id = 5
 nodes = [SubResource("Resource_0mplr"), SubResource("6yf53")]
-
-[sub_resource type="Resource" id="Resource_gi4cx"]
-script = ExtResource("2_48vp3")
-item_type = 0
-connected_to_id = -1
-message_speaker_id = ""
-message_speaker_variant = ""
-message_voice_clip = ""
-message_text = "Dear Teddy,
-
-How are you? How is your summer? I miss you!
-
-Love,
-Aunt"
-message_voice_clip_locales = {}
-message_text_locales = {}
-message_hide_on_end = 0
-condition_type = 10
-condition_values = []
-effect_type = 10
-effect_values = []
-
-[sub_resource type="Resource" id="kur6e"]
-script = ExtResource("4_f2ijm")
-sequence_id = 0
-position = Vector2(0, 0)
-comment = ""
-items = [SubResource("Resource_gi4cx")]
-options = []
-continue_sequence_id = -1
-continue_port_index = 0
-
-[sub_resource type="Resource" id="v4udn"]
-script = ExtResource("5_vkpn8")
-sheet_id = "game_start"
-sheet_description = "auto played at the beginning of the game"
-next_sequence_id = 1
-nodes = [SubResource("kur6e")]
 
 [resource]
 script = ExtResource("1_giduu")

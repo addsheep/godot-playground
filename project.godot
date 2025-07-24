@@ -18,6 +18,10 @@ config/name="Playground"
 run/main_scene="uid://dx32fxlnnhmds"
 config/features=PackedStringArray("4.4", "Forward Plus")
 
+[audio]
+
+buses/default_bus_layout="uid://bu503ur7p8y2a"
+
 [autoload]
 
 MadTalkGlobals="*res://addons/madtalk/runtime/MadTalkGlobals.tscn"

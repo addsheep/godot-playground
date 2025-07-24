@@ -1,12 +1,12 @@
 [gd_scene load_steps=13 format=3 uid="uid://djk1sebtueu62"]
 
 [ext_resource type="PackedScene" uid="uid://dwjdpucscrr7m" path="res://src/clickable/clickable.tscn" id="1_x8q5o"]
-[ext_resource type="Script" uid="uid://c7n1mamnfj07v" path="res://src/scripts/perform_look.gd" id="2_4rxwg"]
-[ext_resource type="Script" uid="uid://bchl7kx6fwell" path="res://src/scripts/perform_dialog.gd" id="3_liekk"]
+[ext_resource type="Script" uid="uid://c7n1mamnfj07v" path="res://src/object/perform_look.gd" id="2_4rxwg"]
+[ext_resource type="Script" uid="uid://bchl7kx6fwell" path="res://src/object/perform_dialog.gd" id="3_liekk"]
 [ext_resource type="PackedScene" uid="uid://cuqg3eu58tvfr" path="res://src/dialog/dialog.tscn" id="4_2ixwf"]
-[ext_resource type="Script" uid="uid://cc7oy4nwvhp2o" path="res://src/scripts/perform_take.gd" id="5_f7qxq"]
+[ext_resource type="Script" uid="uid://cc7oy4nwvhp2o" path="res://src/object/perform_take.gd" id="5_f7qxq"]
 [ext_resource type="Texture2D" uid="uid://3yr87ikvahav" path="res://addons/resource_databases/editor_only/ui/icons/tick_clean.svg" id="6_dkoq0"]
-[ext_resource type="Script" uid="uid://b0y802bsau21n" path="res://src/scripts/item.gd" id="7_pxdxa"]
+[ext_resource type="Script" uid="uid://b0y802bsau21n" path="res://src/object/item.gd" id="7_pxdxa"]
 [ext_resource type="Resource" uid="uid://mrhqlq85qb1f" path="res://tests/assets/test.tres" id="8_f7qxq"]
 
 [sub_resource type="Resource" id="Resource_twrno"]

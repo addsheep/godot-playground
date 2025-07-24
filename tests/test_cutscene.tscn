@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://cdmly0qg6l858"]
 
-[ext_resource type="Script" uid="uid://1gh0myqdi6bq" path="res://src/scripts/click_movement.gd" id="1_eujkw"]
+[ext_resource type="Script" uid="uid://1gh0myqdi6bq" path="res://src/character/click_movement.gd" id="1_eujkw"]
 [ext_resource type="Script" uid="uid://gcbdmpbqpcyk" path="res://src/cutscene/cutscene.gd" id="2_eujkw"]
 
 [sub_resource type="Animation" id="Animation_te262"]
