@@ -3,14 +3,17 @@ extends Control
 ## A clickable object that shows an interaction menu on click.
 ## - add/remove children of "Interactions". Each child node should have a "perform" method.
 
-@export var player_node: Node2D  # used to detect if player is in range
-@export var range: float = 50
+@export var range: float = 50  ## clickable when the player is within this range
+
+var interaction_controller: InteractionController
 
 var _interaction_nodes: Array[Node]
 
 @onready var _menu: Control = $AutoFadeMenu
 
-## Node overrides
+
+func _init() -> void:
+	add_to_group("interaction_controller_consumer")
 
 
 func _ready() -> void:
@@ -28,7 +31,10 @@ func _input(event: InputEvent) -> void:
 
 ## Show menu on click
 func _gui_input(event: InputEvent) -> void:
-	if player_node and global_position.distance_to(player_node.global_position) > range:
+	if (
+		interaction_controller
+		and global_position.distance_to(interaction_controller.player.global_position) > range
+	):
 		return
 	if event.is_action_pressed("left_click"):
 		_menu.show()
