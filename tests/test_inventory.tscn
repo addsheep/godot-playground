@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://cf3pjhuf52brd" path="res://src/inventory/inventory_grid.tscn" id="1_i0jss"]
 [ext_resource type="Script" uid="uid://obyp0hfmosoq" path="res://tests/test_inventory.gd" id="1_wp8uh"]
-[ext_resource type="Resource" uid="uid://mrhqlq85qb1f" path="res://tests/assets/test.tres" id="3_wp8uh"]
+[ext_resource type="Resource" uid="uid://mrhqlq85qb1f" path="res://tests/assets/test_inventory.tres" id="3_wp8uh"]
 
 [node name="TestInventory" type="Control"]
 layout_mode = 3

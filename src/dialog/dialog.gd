@@ -2,6 +2,21 @@ class_name Dialog extends Node
 
 signal dialog_finished(sheet: String, sequence: int)
 
+## Give items to the player. arg 0: item type, arg1: amount
+const CUSTOM_EFFECT_GIVE_ITEM := "effect_give_item"
+## Take items from the player. arg 0: item type, arg1: amount
+const CUSTOM_EFFECT_TAKE_ITEM := "effect_take_item"
+## Check amount of items. arg0: item type
+const CUSTOM_CONDITION_CHECK_ITEM := "check_item_has_at_least"
+
+## A node to act on custom effects and check custom conditions.
+## It should implement the methods specified in "callback_method_map".
+@export var custom_callback_node: Node
+@export var callback_method_map: Dictionary = {
+	CUSTOM_EFFECT_GIVE_ITEM: "add_str",
+	CUSTOM_EFFECT_TAKE_ITEM: "remove_str",
+	CUSTOM_CONDITION_CHECK_ITEM: "has_at_least"
+}
 @onready var _madtalk: Node = $"Madtalk"
 @onready var _main: Control = %DialogMain
 
@@ -20,6 +35,13 @@ func _ready() -> void:
 	_main.gui_input.connect(_gui_input)
 	_madtalk.dialog_started.connect(_on_dialog_started)
 	_madtalk.dialog_finished.connect(_on_dialog_finished)
+
+	# Do both since madtalk read the listener list only once, which makes it sensitive to the order of _ready
+	_madtalk.custom_effect_callable = _on_custom_effect
+	_madtalk.activate_custom_effect.connect(_on_custom_effect)
+
+	_madtalk.evaluate_custom_condition.connect(_eval_custom_condition)
+	_madtalk.custom_condition_callable = _eval_custom_condition
 
 
 func _gui_input(event: InputEvent) -> void:
@@ -46,3 +68,28 @@ func _on_dialog_started(sheet_name: String, sequence: int) -> void:
 func _on_dialog_finished(sheet: String, sequence: int) -> void:
 	await _main.visibility_changed
 	dialog_finished.emit(sheet, sequence)
+
+
+func _on_custom_effect(effect_id: String, args: Array) -> void:
+	if !custom_callback_node:
+		return
+	if (
+		callback_method_map.has(effect_id)
+		and custom_callback_node.has_method(callback_method_map[effect_id])
+	):
+		custom_callback_node.call(callback_method_map[effect_id], args)
+	else:
+		print_debug("Effect not implemented: %s" % effect_id)
+
+
+func _eval_custom_condition(condition_id: String, args: Array) -> bool:
+	if !custom_callback_node:
+		return false
+	if (
+		callback_method_map.has(condition_id)
+		and custom_callback_node.has_method(callback_method_map[condition_id])
+	):
+		return custom_callback_node.call(callback_method_map[condition_id], args)
+
+	print_debug("Condition not implemented: %s" % condition_id)
+	return false

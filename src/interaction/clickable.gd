@@ -33,7 +33,7 @@ func _input(event: InputEvent) -> void:
 func _gui_input(event: InputEvent) -> void:
 	if (
 		interaction_controller
-		and global_position.distance_to(interaction_controller.player.global_position) > range
+		and global_position.distance_to(interaction_controller.get_player_position()) > range
 	):
 		return
 	if event.is_action_pressed("left_click"):

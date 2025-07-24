@@ -1,7 +1,5 @@
 class_name Inventory extends Resource
 
-const INVENTORY_PATH := "user://inventory.tres"
-
 # Emitted when a slot changes
 signal slot_changed(item: Item, old_amount: int, new_amount: int)
 
@@ -15,23 +13,26 @@ class Slot:
 		amount = at
 
 
+@export var save_path: String
+
 @export var _slots := {}  # type -> Slot
 
 
 ## Load the [Inventory] from file or create a new resource, if it was missing. Godot caches calls,
 ## so this can be used every time needed.
-static func restore() -> Inventory:
+static func restore(path: String) -> Inventory:
 	if Engine.is_editor_hint():
 		return null
 
-	if FileAccess.file_exists(INVENTORY_PATH):
-		var inventory = ResourceLoader.load(INVENTORY_PATH) as Inventory
+	if FileAccess.file_exists(path):
+		var inventory = ResourceLoader.load(path) as Inventory
 		if inventory:
 			return inventory
 
 	# Either there is no inventory associated with this profile or the file itself could not be
 	# loaded. Either way, a new inventory resource must be created.
 	var new_inventory := Inventory.new()
+	new_inventory.save_path = path
 	new_inventory.save()
 	return new_inventory
 
@@ -77,4 +78,4 @@ func get_all() -> Dictionary:
 
 ## Write the inventory contents to the disk.
 func save() -> void:
-	ResourceSaver.save(self, INVENTORY_PATH)
+	ResourceSaver.save(self, save_path)

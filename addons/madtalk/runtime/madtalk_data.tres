@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="DialogData" load_steps=17 format=3 uid="uid://dxkjjrap15vxu"]
+[gd_resource type="Resource" script_class="DialogData" load_steps=30 format=3 uid="uid://dxkjjrap15vxu"]
 
 [ext_resource type="Script" uid="uid://bw2q2eucjkylk" path="res://addons/madtalk/components/resources/DialogData.gd" id="1_giduu"]
 [ext_resource type="Script" uid="uid://c2bv5lwcvdmrb" path="res://addons/madtalk/components/resources/DialogNodeItemData.gd" id="2_48vp3"]
@@ -130,12 +130,30 @@ condition_values = []
 effect_type = 10
 effect_values = []
 
+[sub_resource type="Resource" id="Resource_mjnvi"]
+script = ExtResource("2_48vp3")
+item_type = 2
+connected_to_id = -1
+message_speaker_id = ""
+message_speaker_variant = ""
+message_voice_clip = ""
+message_text = ""
+message_voice_clip_locales = {}
+message_text_locales = {}
+message_hide_on_end = 0
+condition_type = 10
+condition_values = []
+effect_type = 10
+effect_values = ["test_effect", "i
+dont
+know"]
+
 [sub_resource type="Resource" id="6yf53"]
 script = ExtResource("4_f2ijm")
 sequence_id = 1
 position = Vector2(700, 20)
 comment = ""
-items = [SubResource("wspnu")]
+items = [SubResource("wspnu"), SubResource("Resource_mjnvi")]
 options = []
 continue_sequence_id = -1
 continue_port_index = 0
@@ -147,10 +165,180 @@ sheet_description = ""
 next_sequence_id = 5
 nodes = [SubResource("Resource_0mplr"), SubResource("6yf53")]
 
+[sub_resource type="Resource" id="yhi86"]
+script = ExtResource("2_48vp3")
+item_type = 0
+connected_to_id = -1
+message_speaker_id = ""
+message_speaker_variant = ""
+message_voice_clip = ""
+message_text = "I'll give you an item!"
+message_voice_clip_locales = {}
+message_text_locales = {}
+message_hide_on_end = 0
+condition_type = 10
+condition_values = []
+effect_type = 10
+effect_values = []
+
+[sub_resource type="Resource" id="ggobe"]
+script = ExtResource("2_48vp3")
+item_type = 2
+connected_to_id = -1
+message_speaker_id = ""
+message_speaker_variant = ""
+message_voice_clip = ""
+message_text = ""
+message_voice_clip_locales = {}
+message_text_locales = {}
+message_hide_on_end = 0
+condition_type = 10
+condition_values = []
+effect_type = 10
+effect_values = ["effect_give_item", "test_item
+2"]
+
+[sub_resource type="Resource" id="6ycpx"]
+script = ExtResource("2_48vp3")
+item_type = 1
+connected_to_id = 1
+message_speaker_id = ""
+message_speaker_variant = ""
+message_voice_clip = ""
+message_text = ""
+message_voice_clip_locales = {}
+message_text_locales = {}
+message_hide_on_end = 0
+condition_type = 10
+condition_values = ["check_item_has_at_least", "test_item
+2"]
+effect_type = 10
+effect_values = []
+
+[sub_resource type="Resource" id="Resource_6yf53"]
+script = ExtResource("2_48vp3")
+item_type = 0
+connected_to_id = -1
+message_speaker_id = ""
+message_speaker_variant = ""
+message_voice_clip = ""
+message_text = "Now I'll take away one item"
+message_voice_clip_locales = {}
+message_text_locales = {}
+message_hide_on_end = 0
+condition_type = 10
+condition_values = []
+effect_type = 10
+effect_values = []
+
+[sub_resource type="Resource" id="Resource_wspnu"]
+script = ExtResource("2_48vp3")
+item_type = 2
+connected_to_id = -1
+message_speaker_id = ""
+message_speaker_variant = ""
+message_voice_clip = ""
+message_text = ""
+message_voice_clip_locales = {}
+message_text_locales = {}
+message_hide_on_end = 0
+condition_type = 10
+condition_values = []
+effect_type = 10
+effect_values = ["effect_take_item", "test_item
+1"]
+
+[sub_resource type="Resource" id="Resource_uwwod"]
+script = ExtResource("2_48vp3")
+item_type = 1
+connected_to_id = 2
+message_speaker_id = ""
+message_speaker_variant = ""
+message_voice_clip = ""
+message_text = ""
+message_voice_clip_locales = {}
+message_text_locales = {}
+message_hide_on_end = 0
+condition_type = 10
+condition_values = ["check_item_has_at_least", "test_item
+2"]
+effect_type = 10
+effect_values = []
+
+[sub_resource type="Resource" id="lehqt"]
+script = ExtResource("4_f2ijm")
+sequence_id = 0
+position = Vector2(0, 0)
+comment = ""
+items = [SubResource("yhi86"), SubResource("ggobe"), SubResource("6ycpx"), SubResource("Resource_6yf53"), SubResource("Resource_wspnu"), SubResource("Resource_uwwod")]
+options = []
+continue_sequence_id = -1
+continue_port_index = 2
+
+[sub_resource type="Resource" id="lc1t1"]
+script = ExtResource("2_48vp3")
+item_type = 0
+connected_to_id = -1
+message_speaker_id = ""
+message_speaker_variant = ""
+message_voice_clip = ""
+message_text = "Failed to give items!"
+message_voice_clip_locales = {}
+message_text_locales = {}
+message_hide_on_end = 0
+condition_type = 10
+condition_values = []
+effect_type = 10
+effect_values = []
+
+[sub_resource type="Resource" id="wmu1q"]
+script = ExtResource("4_f2ijm")
+sequence_id = 1
+position = Vector2(462.714, 105.78)
+comment = ""
+items = [SubResource("lc1t1")]
+options = []
+continue_sequence_id = -1
+continue_port_index = 0
+
+[sub_resource type="Resource" id="Resource_ig706"]
+script = ExtResource("2_48vp3")
+item_type = 0
+connected_to_id = -1
+message_speaker_id = ""
+message_speaker_variant = ""
+message_voice_clip = ""
+message_text = "OK!"
+message_voice_clip_locales = {}
+message_text_locales = {}
+message_hide_on_end = 0
+condition_type = 10
+condition_values = []
+effect_type = 10
+effect_values = []
+
+[sub_resource type="Resource" id="Resource_uj1nl"]
+script = ExtResource("4_f2ijm")
+sequence_id = 2
+position = Vector2(460, 340)
+comment = ""
+items = [SubResource("Resource_ig706")]
+options = []
+continue_sequence_id = -1
+continue_port_index = 0
+
+[sub_resource type="Resource" id="2fyt0"]
+script = ExtResource("5_vkpn8")
+sheet_id = "test_backpack"
+sheet_description = ""
+next_sequence_id = 3
+nodes = [SubResource("lehqt"), SubResource("wmu1q"), SubResource("Resource_uj1nl")]
+
 [resource]
 script = ExtResource("1_giduu")
 version = 1.0
 sheets = {
 "game_start": SubResource("v4udn"),
+"test_backpack": SubResource("2fyt0"),
 "test_dialog_0": SubResource("Resource_hkg3h")
 }

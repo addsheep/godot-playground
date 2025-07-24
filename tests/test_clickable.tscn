@@ -7,7 +7,7 @@
 [ext_resource type="Script" uid="uid://cc7oy4nwvhp2o" path="res://src/object/perform_take.gd" id="5_f7qxq"]
 [ext_resource type="Texture2D" uid="uid://3yr87ikvahav" path="res://addons/resource_databases/editor_only/ui/icons/tick_clean.svg" id="6_dkoq0"]
 [ext_resource type="Script" uid="uid://b0y802bsau21n" path="res://src/object/item.gd" id="7_pxdxa"]
-[ext_resource type="Resource" uid="uid://mrhqlq85qb1f" path="res://tests/assets/test.tres" id="8_f7qxq"]
+[ext_resource type="Resource" uid="uid://mrhqlq85qb1f" path="res://tests/assets/test_inventory.tres" id="8_f7qxq"]
 
 [sub_resource type="Resource" id="Resource_twrno"]
 script = ExtResource("7_pxdxa")
@@ -86,13 +86,11 @@ _data = {
 [node name="Object" type="Node2D" parent="."]
 position = Vector2(138, 141)
 
-[node name="Clickable" parent="Object" node_paths=PackedStringArray("player_node") instance=ExtResource("1_x8q5o")]
-player_node = NodePath("../../Player")
+[node name="Clickable" parent="Object" instance=ExtResource("1_x8q5o")]
 range = 300.0
 
 [node name="Look" type="Node" parent="Object/Clickable/Interactions" index="0"]
 script = ExtResource("2_4rxwg")
-description = "Test look"
 metadata/_custom_type_script = "uid://c7n1mamnfj07v"
 
 [node name="Talk" type="Node" parent="Object/Clickable/Interactions" index="1" node_paths=PackedStringArray("dialog")]
@@ -116,16 +114,14 @@ libraries = {
 [node name="ObjectTooFar" type="Node2D" parent="."]
 position = Vector2(138, 141)
 
-[node name="Clickable" parent="ObjectTooFar" node_paths=PackedStringArray("player_node") instance=ExtResource("1_x8q5o")]
+[node name="Clickable" parent="ObjectTooFar" instance=ExtResource("1_x8q5o")]
 offset_left = 389.0
 offset_top = 13.0
 offset_right = 439.0
 offset_bottom = 63.0
-player_node = NodePath("../../Player")
 
 [node name="Look" type="Node" parent="ObjectTooFar/Clickable/Interactions" index="0"]
 script = ExtResource("2_4rxwg")
-description = "Test look"
 metadata/_custom_type_script = "uid://c7n1mamnfj07v"
 
 [node name="Talk" type="Node" parent="ObjectTooFar/Clickable/Interactions" index="1" node_paths=PackedStringArray("dialog")]

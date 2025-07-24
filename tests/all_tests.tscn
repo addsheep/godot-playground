@@ -24,12 +24,12 @@ theme_override_constants/h_separation = 8
 theme_override_constants/v_separation = 8
 
 [node name="Window" type="Window" parent="."]
+audio_listener_enable_2d = true
 physics_object_picking = true
 title = "TEST"
 initial_position = 1
 size = Vector2i(800, 450)
 visible = false
-always_on_top = true
 
 [node name="TestRoot" type="Node" parent="Window"]
 

@@ -13,3 +13,7 @@ func _ready() -> void:
 	var nodes := get_tree().get_nodes_in_group("interaction_controller_consumer")
 	for node: Node in nodes:
 		node.set("interaction_controller", self)
+
+
+func get_player_position() -> Vector2:
+	return player.global_position if player else Vector2.INF

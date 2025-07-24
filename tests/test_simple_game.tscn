@@ -1,23 +1,23 @@
 [gd_scene load_steps=26 format=3 uid="uid://dx32fxlnnhmds"]
 
-[ext_resource type="Script" uid="uid://gcbdmpbqpcyk" path="res://src/cutscene/cutscene.gd" id="1_eewff"]
-[ext_resource type="Script" uid="uid://sypytevx3f1d" path="res://src/dialog/dialog.gd" id="2_fyndt"]
-[ext_resource type="Script" uid="uid://c6av3xe4m2ujl" path="res://addons/madtalk/runtime/madtalk_runtime.gd" id="3_kmhfv"]
-[ext_resource type="AudioStream" uid="uid://dr553b0ej26vk" path="res://assets/sfx/click.wav" id="4_rlaii"]
-[ext_resource type="Script" uid="uid://cv3lb6eu4x3rb" path="res://src/effects/auto_fade.gd" id="5_5mrjc"]
-[ext_resource type="Script" uid="uid://1gh0myqdi6bq" path="res://src/character/click_movement.gd" id="6_rlaii"]
-[ext_resource type="Texture2D" uid="uid://criq7ti3sarma" path="res://assets/kenney/character_purple_walk_a.png" id="7_kf8lf"]
-[ext_resource type="Script" uid="uid://dy83sm3jk0w2w" path="res://src/interaction/interaction_controller.gd" id="7_okx7f"]
-[ext_resource type="AudioStream" uid="uid://o8mcsqxdvo68" path="res://assets/music/boobanger/vintage-boobanger-fullmix-210785.mp3" id="8_5mrjc"]
-[ext_resource type="Texture2D" uid="uid://bitgjgu2apsl1" path="res://assets/kenney/character_purple_front.png" id="8_kqbth"]
-[ext_resource type="Texture2D" uid="uid://cifnd8p5gauvv" path="res://assets/kenney/character_purple_walk_b.png" id="8_mgm53"]
-[ext_resource type="Script" uid="uid://bgkqhuqj2cwun" path="res://src/character/character_controller.gd" id="8_srxbw"]
-[ext_resource type="Script" uid="uid://bkkw5jdadeey7" path="res://src/character/character_animation_controller.gd" id="9_mgm53"]
-[ext_resource type="Texture2D" uid="uid://c7jo1du42eyi6" path="res://assets/kenney/character_purple_duck.png" id="9_srxbw"]
-[ext_resource type="Texture2D" uid="uid://pitjyqj7brld" path="res://addons/resource_databases/editor_only/ui/icons/create_clean.svg" id="10_d3u4l"]
-[ext_resource type="PackedScene" uid="uid://dwjdpucscrr7m" path="res://src/interaction/clickable.tscn" id="15_tb146"]
-[ext_resource type="Texture2D" uid="uid://200bqpuqfn6m" path="res://addons/madtalk/images/icon_condition.png" id="16_e7lu8"]
-[ext_resource type="Script" uid="uid://c7n1mamnfj07v" path="res://src/object/perform_look.gd" id="16_okx7f"]
+[ext_resource type="Script" uid="uid://gcbdmpbqpcyk" path="res://src/cutscene/cutscene.gd" id="1_5kbu1"]
+[ext_resource type="Script" uid="uid://sypytevx3f1d" path="res://src/dialog/dialog.gd" id="2_l4865"]
+[ext_resource type="Script" uid="uid://c6av3xe4m2ujl" path="res://addons/madtalk/runtime/madtalk_runtime.gd" id="3_e7lxg"]
+[ext_resource type="AudioStream" uid="uid://dr553b0ej26vk" path="res://assets/sfx/click.wav" id="4_huwsf"]
+[ext_resource type="Script" uid="uid://cv3lb6eu4x3rb" path="res://src/effects/auto_fade.gd" id="5_qwn1w"]
+[ext_resource type="AudioStream" uid="uid://o8mcsqxdvo68" path="res://assets/music/boobanger/vintage-boobanger-fullmix-210785.mp3" id="6_r3dqv"]
+[ext_resource type="Script" uid="uid://dy83sm3jk0w2w" path="res://src/interaction/interaction_controller.gd" id="7_pcjxp"]
+[ext_resource type="Script" uid="uid://bgkqhuqj2cwun" path="res://src/character/character_controller.gd" id="8_ctecw"]
+[ext_resource type="Script" uid="uid://bkkw5jdadeey7" path="res://src/character/character_animation_controller.gd" id="9_ffjcv"]
+[ext_resource type="Script" uid="uid://1gh0myqdi6bq" path="res://src/character/click_movement.gd" id="10_n5syr"]
+[ext_resource type="Texture2D" uid="uid://bitgjgu2apsl1" path="res://assets/kenney/character_purple_front.png" id="11_u4eyj"]
+[ext_resource type="Texture2D" uid="uid://c7jo1du42eyi6" path="res://assets/kenney/character_purple_duck.png" id="12_1babc"]
+[ext_resource type="Texture2D" uid="uid://cifnd8p5gauvv" path="res://assets/kenney/character_purple_walk_b.png" id="13_ixgx5"]
+[ext_resource type="Texture2D" uid="uid://criq7ti3sarma" path="res://assets/kenney/character_purple_walk_a.png" id="14_qlwrk"]
+[ext_resource type="Texture2D" uid="uid://pitjyqj7brld" path="res://addons/resource_databases/editor_only/ui/icons/create_clean.svg" id="15_0b1uj"]
+[ext_resource type="PackedScene" uid="uid://dwjdpucscrr7m" path="res://src/interaction/clickable.tscn" id="16_vnkqg"]
+[ext_resource type="Script" uid="uid://c7n1mamnfj07v" path="res://src/object/perform_look.gd" id="17_eajde"]
+[ext_resource type="Texture2D" uid="uid://200bqpuqfn6m" path="res://addons/madtalk/images/icon_condition.png" id="18_r782i"]
 
 [sub_resource type="Animation" id="Animation_fyndt"]
 resource_name = "default"
@@ -56,7 +56,7 @@ radius = 31.0161
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("8_kqbth")
+"texture": ExtResource("11_u4eyj")
 }],
 "loop": true,
 "name": &"idle",
@@ -64,7 +64,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("9_srxbw")
+"texture": ExtResource("12_1babc")
 }],
 "loop": true,
 "name": &"look",
@@ -72,10 +72,10 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("8_mgm53")
+"texture": ExtResource("13_ixgx5")
 }, {
 "duration": 1.0,
-"texture": ExtResource("7_kf8lf")
+"texture": ExtResource("14_qlwrk")
 }],
 "loop": true,
 "name": &"walk",
@@ -85,7 +85,7 @@ animations = [{
 [node name="Main" type="Node2D"]
 
 [node name="StartCutScene" type="Node" parent="." node_paths=PackedStringArray("animation_player")]
-script = ExtResource("1_eewff")
+script = ExtResource("1_5kbu1")
 animation_player = NodePath("AnimationPlayer")
 metadata/_custom_type_script = "uid://gcbdmpbqpcyk"
 
@@ -95,7 +95,7 @@ libraries = {
 }
 
 [node name="Dialog" type="Node" parent="StartCutScene/AnimationPlayer"]
-script = ExtResource("2_fyndt")
+script = ExtResource("2_l4865")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="StartCutScene/AnimationPlayer/Dialog"]
 
@@ -166,7 +166,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Madtalk" type="Node" parent="StartCutScene/AnimationPlayer/Dialog"]
-script = ExtResource("3_kmhfv")
+script = ExtResource("3_e7lxg")
 DialogMainControl = NodePath("../AutoFadeDialogMain")
 DialogMessageBox = NodePath("../AutoFadeMessageBox")
 DialogMessageLabel = NodePath("../CanvasLayer/DialogMain/MessagePanel/MessageRichLabel")
@@ -175,35 +175,36 @@ DialogButtonsContainer = NodePath("../CanvasLayer/DialogMain/MenuPanel/ButtonCon
 KeyPressAudioStreamPlayer = NodePath("AudioStreamPlayer")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="StartCutScene/AnimationPlayer/Dialog/Madtalk"]
-stream = ExtResource("4_rlaii")
+stream = ExtResource("4_huwsf")
 
 [node name="AutoFadeDialogMain" type="Control" parent="StartCutScene/AnimationPlayer/Dialog" node_paths=PackedStringArray("effect_target")]
 layout_mode = 3
 anchors_preset = 0
-script = ExtResource("5_5mrjc")
+script = ExtResource("5_qwn1w")
 effect_target = NodePath("../CanvasLayer/DialogMain")
 
 [node name="AutoFadeMessageBox" type="Control" parent="StartCutScene/AnimationPlayer/Dialog" node_paths=PackedStringArray("effect_target")]
 layout_mode = 3
 anchors_preset = 0
-script = ExtResource("5_5mrjc")
+script = ExtResource("5_qwn1w")
 effect_target = NodePath("../CanvasLayer/DialogMain/MessagePanel")
 
 [node name="AutoFadeMenu" type="Control" parent="StartCutScene/AnimationPlayer/Dialog" node_paths=PackedStringArray("effect_target")]
 layout_mode = 3
 anchors_preset = 0
-script = ExtResource("5_5mrjc")
+script = ExtResource("5_qwn1w")
 effect_target = NodePath("../CanvasLayer/DialogMain/MenuPanel")
 
 [node name="AutoFadeWorld" type="Node2D" parent="." node_paths=PackedStringArray("effect_target")]
-script = ExtResource("5_5mrjc")
+script = ExtResource("5_qwn1w")
 effect_target = NodePath("../World")
 start_hidden = true
 
 [node name="World" type="Node2D" parent="."]
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="World"]
-stream = ExtResource("8_5mrjc")
+stream = ExtResource("6_r3dqv")
+autoplay = true
 bus = &"Music"
 
 [node name="Camera2D" type="Camera2D" parent="World"]
@@ -215,19 +216,19 @@ scale = Vector2(2.26953, 1.28711)
 texture = SubResource("NoiseTexture2D_srxbw")
 
 [node name="InteractionController" type="Node" parent="World"]
-script = ExtResource("7_okx7f")
+script = ExtResource("7_pcjxp")
 metadata/_custom_type_script = "uid://dy83sm3jk0w2w"
 
 [node name="Player" type="CharacterBody2D" parent="World"]
 
 [node name="CharacterController" type="Node" parent="World/Player" node_paths=PackedStringArray("body", "animation_controller")]
-script = ExtResource("8_srxbw")
+script = ExtResource("8_ctecw")
 body = NodePath("..")
 animation_controller = NodePath("../CharacterAnimationController")
 metadata/_custom_type_script = "uid://bgkqhuqj2cwun"
 
 [node name="CharacterAnimationController" type="Node" parent="World/Player" node_paths=PackedStringArray("animated_sprite")]
-script = ExtResource("9_mgm53")
+script = ExtResource("9_ffjcv")
 animated_sprite = NodePath("../AnimatedSprite2D")
 metadata/_custom_type_script = "uid://bkkw5jdadeey7"
 
@@ -239,7 +240,7 @@ position = Vector2(0, -30)
 shape = SubResource("CircleShape2D_rlaii")
 
 [node name="ClickMove" type="Node" parent="World/Player" node_paths=PackedStringArray("body", "anchor")]
-script = ExtResource("6_rlaii")
+script = ExtResource("10_n5syr")
 body = NodePath("..")
 anchor = NodePath("../../ClickAnchor")
 
@@ -250,20 +251,20 @@ animation = &"walk"
 autoplay = "idle"
 
 [node name="ClickAnchor" type="Sprite2D" parent="World"]
-texture = ExtResource("10_d3u4l")
+texture = ExtResource("15_0b1uj")
 
-[node name="Clickable" parent="World" instance=ExtResource("15_tb146")]
+[node name="Clickable" parent="World" instance=ExtResource("16_vnkqg")]
 offset_left = -404.0
 offset_top = 105.0
 offset_right = -354.0
 offset_bottom = 155.0
 
 [node name="Look" type="Node" parent="World/Clickable/Interactions" index="0"]
-script = ExtResource("16_okx7f")
+script = ExtResource("17_eajde")
 message = "What is it?"
 
 [node name="TextureRect" parent="World/Clickable" index="1"]
-texture = ExtResource("16_e7lu8")
+texture = ExtResource("18_r782i")
 
 [connection signal="tree_exiting" from="StartCutScene" to="AutoFadeWorld" method="show"]
 [connection signal="dialog_finished" from="StartCutScene/AnimationPlayer/Dialog" to="StartCutScene" method="end_cutscene" unbinds=2]

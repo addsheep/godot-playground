@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://6ysgdf6jswa2"]
+
+[ext_resource type="Script" uid="uid://dws4ikeu8uour" path="res://src/inventory/backpack.gd" id="1_patu0"]
+[ext_resource type="PackedScene" uid="uid://cf3pjhuf52brd" path="res://src/inventory/inventory_grid.tscn" id="2_patu0"]
+[ext_resource type="Resource" uid="uid://mrhqlq85qb1f" path="res://tests/assets/test_inventory.tres" id="3_7xs0w"]
+[ext_resource type="PackedScene" uid="uid://cuqg3eu58tvfr" path="res://src/dialog/dialog.tscn" id="4_7xs0w"]
+
+[node name="Backpack" type="Control" node_paths=PackedStringArray("inventory_ui")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_patu0")
+inventory_ui = NodePath("InventoryUi")
+
+[node name="InventoryUi" parent="." instance=ExtResource("2_patu0")]
+layout_mode = 0
+inventory = ExtResource("3_7xs0w")
+
+[node name="Dialog" parent="." node_paths=PackedStringArray("custom_callback_node") instance=ExtResource("4_7xs0w")]
+custom_callback_node = NodePath("..")
+
+[connection signal="ready" from="." to="Dialog" method="start" binds= ["test_backpack"]]
