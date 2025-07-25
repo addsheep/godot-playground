@@ -27,6 +27,7 @@ func _ready() -> void:
 func _input(event: InputEvent) -> void:
 	if _menu.visible and event.is_action_pressed("left_click"):
 		_menu.hide()
+		# Do not consume/eat the event since it blocks UI
 
 
 ## Show menu on click
@@ -47,7 +48,6 @@ func _gui_input(event: InputEvent) -> void:
 func _perform_action(interaction: Node) -> void:
 	if interaction.has_method("perform"):
 		interaction.perform()
-	_menu.hide()
 
 
 func _build_menu() -> void:

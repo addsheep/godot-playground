@@ -3,19 +3,21 @@ class_name AutoFade extends CanvasItem
 
 @export var effect_target: CanvasItem
 @export var delay: float = 0.5
-@export var start_hidden: bool
+@export var show_on_ready: bool
 
 var saved_modulate: Color
 var tween: Tween
 
 
-func _ready() -> void:
+func _enter_tree() -> void:
 	saved_modulate = effect_target.modulate
-	if start_hidden:
-		effect_target.hide()
 	visible = effect_target.visible
-
 	visibility_changed.connect(_on_visibility_changed)
+
+
+func _ready() -> void:
+	if show_on_ready:
+		show()
 
 
 func _on_visibility_changed() -> void:

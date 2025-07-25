@@ -1,0 +1,110 @@
+[gd_scene load_steps=16 format=3 uid="uid://bcn4c8sgv26w2"]
+
+[ext_resource type="Script" uid="uid://cv3lb6eu4x3rb" path="res://src/effects/auto_fade.gd" id="1_bgrfn"]
+[ext_resource type="AudioStream" uid="uid://o8mcsqxdvo68" path="res://assets/music/boobanger/vintage-boobanger-fullmix-210785.mp3" id="2_bjkti"]
+[ext_resource type="Script" uid="uid://dy83sm3jk0w2w" path="res://src/interaction/interaction_controller.gd" id="3_noj3q"]
+[ext_resource type="Script" uid="uid://bgkqhuqj2cwun" path="res://src/character/character_controller.gd" id="4_gefu5"]
+[ext_resource type="Script" uid="uid://bkkw5jdadeey7" path="res://src/character/character_animation_controller.gd" id="5_1fbu6"]
+[ext_resource type="Script" uid="uid://1gh0myqdi6bq" path="res://src/character/click_movement.gd" id="6_frh01"]
+[ext_resource type="Texture2D" uid="uid://bitgjgu2apsl1" path="res://assets/kenney/character_purple_front.png" id="7_nbbct"]
+[ext_resource type="Texture2D" uid="uid://c7jo1du42eyi6" path="res://assets/kenney/character_purple_duck.png" id="8_aynxg"]
+[ext_resource type="Texture2D" uid="uid://cifnd8p5gauvv" path="res://assets/kenney/character_purple_walk_b.png" id="9_85pe4"]
+[ext_resource type="Texture2D" uid="uid://criq7ti3sarma" path="res://assets/kenney/character_purple_walk_a.png" id="10_2mxrt"]
+[ext_resource type="Texture2D" uid="uid://pitjyqj7brld" path="res://addons/resource_databases/editor_only/ui/icons/create_clean.svg" id="11_j5h6c"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_srxbw"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_0o2ju"]
+noise = SubResource("FastNoiseLite_srxbw")
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vgiw8"]
+radius = 31.0161
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_x4ku2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_nbbct")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_aynxg")
+}],
+"loop": true,
+"name": &"look",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_85pe4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_2mxrt")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[node name="WorldRoot" type="Node2D"]
+
+[node name="AutoFadeWorld" type="Node2D" parent="." node_paths=PackedStringArray("effect_target")]
+script = ExtResource("1_bgrfn")
+effect_target = NodePath("../World")
+
+[node name="World" type="Node2D" parent="."]
+
+[node name="AudioStreamPlayerBGM" type="AudioStreamPlayer2D" parent="World"]
+stream = ExtResource("2_bjkti")
+autoplay = true
+bus = &"Music"
+
+[node name="Camera2D" type="Camera2D" parent="World"]
+position_smoothing_enabled = true
+
+[node name="Background" type="Sprite2D" parent="World"]
+position = Vector2(-1.52588e-05, -4.50002)
+scale = Vector2(2.26953, 1.28711)
+texture = SubResource("NoiseTexture2D_0o2ju")
+
+[node name="InteractionController" type="Node" parent="World"]
+script = ExtResource("3_noj3q")
+metadata/_custom_type_script = "uid://dy83sm3jk0w2w"
+
+[node name="Player" type="CharacterBody2D" parent="World"]
+
+[node name="CharacterController" type="Node" parent="World/Player" node_paths=PackedStringArray("body", "animation_controller")]
+script = ExtResource("4_gefu5")
+body = NodePath("..")
+animation_controller = NodePath("../CharacterAnimationController")
+metadata/_custom_type_script = "uid://bgkqhuqj2cwun"
+
+[node name="CharacterAnimationController" type="Node" parent="World/Player" node_paths=PackedStringArray("animated_sprite")]
+script = ExtResource("5_1fbu6")
+animated_sprite = NodePath("../AnimatedSprite2D")
+metadata/_custom_type_script = "uid://bkkw5jdadeey7"
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="World/Player"]
+remote_path = NodePath("../../Camera2D")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World/Player"]
+position = Vector2(0, -30)
+shape = SubResource("CircleShape2D_vgiw8")
+
+[node name="ClickMove" type="Node" parent="World/Player" node_paths=PackedStringArray("body", "anchor")]
+script = ExtResource("6_frh01")
+body = NodePath("..")
+anchor = NodePath("../../ClickAnchor")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="World/Player"]
+position = Vector2(0, -60)
+sprite_frames = SubResource("SpriteFrames_x4ku2")
+animation = &"walk"
+autoplay = "idle"
+
+[node name="ClickAnchor" type="Sprite2D" parent="World"]
+texture = ExtResource("11_j5h6c")

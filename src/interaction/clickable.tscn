@@ -27,12 +27,13 @@ texture = ExtResource("2_2h3v2")
 expand_mode = 1
 
 [node name="AutoFadeMenu" type="Control" parent="." node_paths=PackedStringArray("effect_target")]
+visible = false
 anchors_preset = 0
 script = ExtResource("2_gr7h0")
 effect_target = NodePath("../Menu")
-start_hidden = true
 
 [node name="Menu" type="VBoxContainer" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5

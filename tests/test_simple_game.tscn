@@ -16,7 +16,7 @@
 [ext_resource type="Texture2D" uid="uid://criq7ti3sarma" path="res://assets/kenney/character_purple_walk_a.png" id="14_qlwrk"]
 [ext_resource type="Texture2D" uid="uid://pitjyqj7brld" path="res://addons/resource_databases/editor_only/ui/icons/create_clean.svg" id="15_0b1uj"]
 [ext_resource type="PackedScene" uid="uid://dwjdpucscrr7m" path="res://src/interaction/clickable.tscn" id="16_vnkqg"]
-[ext_resource type="Script" uid="uid://c7n1mamnfj07v" path="res://src/object/perform_look.gd" id="17_eajde"]
+[ext_resource type="Script" uid="uid://c7n1mamnfj07v" path="res://src/interaction/perform_look.gd" id="17_eajde"]
 [ext_resource type="Texture2D" uid="uid://200bqpuqfn6m" path="res://addons/madtalk/images/icon_condition.png" id="18_r782i"]
 
 [sub_resource type="Animation" id="Animation_fyndt"]
@@ -44,10 +44,10 @@ _data = {
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bhcbb"]
 
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_srxbw"]
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_5kbu1"]
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_srxbw"]
-noise = SubResource("FastNoiseLite_srxbw")
+noise = SubResource("FastNoiseLite_5kbu1")
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_rlaii"]
 radius = 31.0161
@@ -198,7 +198,6 @@ effect_target = NodePath("../CanvasLayer/DialogMain/MenuPanel")
 [node name="AutoFadeWorld" type="Node2D" parent="." node_paths=PackedStringArray("effect_target")]
 script = ExtResource("5_qwn1w")
 effect_target = NodePath("../World")
-start_hidden = true
 
 [node name="World" type="Node2D" parent="."]
 
