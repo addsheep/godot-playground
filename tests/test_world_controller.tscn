@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=3 uid="uid://ct3kq3tho8lrx"]
+
+[ext_resource type="Script" uid="uid://di00law3hjedc" path="res://src/world/world_controller.gd" id="1_leyeb"]
+
+[node name="TestWorldController" type="Node2D"]
+script = ExtResource("1_leyeb")
+current_world_name = "test_simple_game"
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 10
+
+[node name="Button" type="Button" parent="CanvasLayer"]
+offset_right = 58.0
+offset_bottom = 31.0
+text = "switch"
+
+[connection signal="pressed" from="CanvasLayer/Button" to="." method="load_world" binds= ["world_template"]]
