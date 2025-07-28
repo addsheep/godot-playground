@@ -41,6 +41,11 @@ func _physics_process(delta: float) -> void:
 		body.velocity = Vector2.ZERO
 
 
+func _notification(what: int) -> void:
+	if what == NOTIFICATION_PAUSED:
+		_target = body.global_position
+
+
 func _show_anchor() -> void:
 	if anchor:
 		anchor.global_position = _target
