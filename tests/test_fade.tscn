@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://ef6los3ts4pc"]
 
-[ext_resource type="Script" uid="uid://cv3lb6eu4x3rb" path="res://src/effects/auto_fade.gd" id="1_oyhwi"]
+[ext_resource type="Script" uid="uid://cv3lb6eu4x3rb" path="res://src/scripts/auto_fade.gd" id="1_oyhwi"]
 
 [node name="TestFade" type="Control"]
 layout_mode = 3

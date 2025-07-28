@@ -5,7 +5,7 @@ static var instance: Toast
 @export var default_duration: float = 1.0
 
 @onready var _toast_ui: CanvasItem = %AutoFade
-@onready var _label: Label = %Label
+@onready var _label: RichTextLabel = %Label
 
 var _msg_queue: Array  ## [[msg, duration]]
 var _current_duration: float = -1

@@ -1,7 +1,6 @@
-extends Node
+class_name Backpack extends Node
 
 const PATH := "user://backpack.res"
-const DB_PATH_PREFIX := "items/"
 
 @export var inventory_ui: InventoryUI
 
@@ -10,13 +9,15 @@ var _inventory: Inventory
 
 func _ready() -> void:
 	_inventory = Inventory.restore(PATH)
-	inventory_ui.inventory = _inventory
+	if inventory_ui:
+		inventory_ui.inventory = _inventory
 
 
 ## Dialog custom callbacks
 func add_str(args: Array) -> void:
-	var item: Item = DatabaseUtils.load_res(DB_PATH_PREFIX + args[0])
-	_inventory.add(item, int(args[1]))
+	var item: Item = Item.item_from_type(args[0])
+	if item:
+		_inventory.add(item, int(args[1]))
 
 
 func remove_str(args: Array) -> void:

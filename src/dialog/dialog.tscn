@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://sypytevx3f1d" path="res://src/dialog/dialog.gd" id="2_bhcbb"]
 [ext_resource type="Script" uid="uid://bttgnk3bb2a8i" path="res://addons/font_auto_size_labels/auto_size_label.gd" id="2_wwfve"]
 [ext_resource type="AudioStream" uid="uid://dr553b0ej26vk" path="res://assets/sfx/click.wav" id="3_535ym"]
-[ext_resource type="Script" uid="uid://cv3lb6eu4x3rb" path="res://src/effects/auto_fade.gd" id="5_pogjm"]
+[ext_resource type="Script" uid="uid://cv3lb6eu4x3rb" path="res://src/scripts/auto_fade.gd" id="5_pogjm"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pogjm"]
 
@@ -17,7 +17,6 @@ script = ExtResource("2_bhcbb")
 
 [node name="DialogMain" type="Control" parent="CanvasLayer"]
 unique_name_in_owner = true
-visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -138,18 +137,21 @@ AutoShowMenuOnLastMessage = true
 stream = ExtResource("3_535ym")
 
 [node name="AutoFadeDialogMain" type="Control" parent="." node_paths=PackedStringArray("effect_target")]
+visible = false
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("5_pogjm")
 effect_target = NodePath("../CanvasLayer/DialogMain")
 
 [node name="AutoFadeMessageBox" type="Control" parent="." node_paths=PackedStringArray("effect_target")]
+visible = false
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("5_pogjm")
 effect_target = NodePath("../CanvasLayer/DialogMain/MessagePanel")
 
 [node name="AutoFadeMenu" type="Control" parent="." node_paths=PackedStringArray("effect_target")]
+visible = false
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("5_pogjm")

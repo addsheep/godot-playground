@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://c0e13vnum8uy6" path="res://src/interaction/clickable.gd" id="1_lei8h"]
 [ext_resource type="Texture2D" uid="uid://3yr87ikvahav" path="res://addons/resource_databases/editor_only/ui/icons/tick_clean.svg" id="2_2h3v2"]
-[ext_resource type="Script" uid="uid://cv3lb6eu4x3rb" path="res://src/effects/auto_fade.gd" id="2_gr7h0"]
+[ext_resource type="Script" uid="uid://cv3lb6eu4x3rb" path="res://src/scripts/auto_fade.gd" id="2_gr7h0"]
 
 [node name="Clickable" type="Control"]
 custom_minimum_size = Vector2(50, 50)

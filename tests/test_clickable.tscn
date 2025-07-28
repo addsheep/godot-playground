@@ -1,14 +1,23 @@
-[gd_scene load_steps=14 format=3 uid="uid://djk1sebtueu62"]
+[gd_scene load_steps=18 format=3 uid="uid://djk1sebtueu62"]
 
 [ext_resource type="PackedScene" uid="uid://dwjdpucscrr7m" path="res://src/interaction/clickable.tscn" id="1_x8q5o"]
 [ext_resource type="Script" uid="uid://c7n1mamnfj07v" path="res://src/interaction/perform_look.gd" id="2_4rxwg"]
+[ext_resource type="Script" uid="uid://b3uue5g7vfyuh" path="res://src/side_effect/side_effect.gd" id="3_jwci2"]
 [ext_resource type="Script" uid="uid://bchl7kx6fwell" path="res://src/interaction/perform_dialog.gd" id="3_liekk"]
 [ext_resource type="PackedScene" uid="uid://cuqg3eu58tvfr" path="res://src/dialog/dialog.tscn" id="4_2ixwf"]
 [ext_resource type="Script" uid="uid://cc7oy4nwvhp2o" path="res://src/interaction/perform_take.gd" id="5_f7qxq"]
 [ext_resource type="Texture2D" uid="uid://3yr87ikvahav" path="res://addons/resource_databases/editor_only/ui/icons/tick_clean.svg" id="6_dkoq0"]
-[ext_resource type="Script" uid="uid://b0y802bsau21n" path="res://src/object/item.gd" id="7_pxdxa"]
+[ext_resource type="Script" uid="uid://b0y802bsau21n" path="res://src/scripts/item.gd" id="7_pxdxa"]
 [ext_resource type="Resource" uid="uid://mrhqlq85qb1f" path="res://tests/assets/test_inventory.tres" id="8_f7qxq"]
 [ext_resource type="PackedScene" uid="uid://bgiuk7jpdbis4" path="res://src/toast/toast.tscn" id="9_dkoq0"]
+[ext_resource type="Script" uid="uid://dws4ikeu8uour" path="res://src/inventory/backpack.gd" id="11_twrno"]
+[ext_resource type="Script" uid="uid://4lfnsuiqckhk" path="res://src/side_effect/side_effect_handler.gd" id="12_twrno"]
+
+[sub_resource type="Resource" id="Resource_tve6v"]
+script = ExtResource("3_jwci2")
+type = 0
+args = ["test_item", "2"]
+metadata/_custom_type_script = "uid://b3uue5g7vfyuh"
 
 [sub_resource type="Resource" id="Resource_twrno"]
 script = ExtResource("7_pxdxa")
@@ -92,6 +101,8 @@ range = 300.0
 
 [node name="Look" type="Node" parent="Object/Clickable/Interactions" index="0"]
 script = ExtResource("2_4rxwg")
+message = "an object with side effect"
+side_effect = SubResource("Resource_tve6v")
 metadata/_custom_type_script = "uid://c7n1mamnfj07v"
 
 [node name="Talk" type="Node" parent="Object/Clickable/Interactions" index="1" node_paths=PackedStringArray("dialog")]
@@ -112,42 +123,19 @@ libraries = {
 &"": SubResource("AnimationLibrary_daoxy")
 }
 
-[node name="ObjectTooFar" type="Node2D" parent="."]
-position = Vector2(138, 141)
-
-[node name="Clickable" parent="ObjectTooFar" instance=ExtResource("1_x8q5o")]
-offset_left = 389.0
-offset_top = 13.0
-offset_right = 439.0
-offset_bottom = 63.0
-
-[node name="Look" type="Node" parent="ObjectTooFar/Clickable/Interactions" index="0"]
-script = ExtResource("2_4rxwg")
-metadata/_custom_type_script = "uid://c7n1mamnfj07v"
-
-[node name="Talk" type="Node" parent="ObjectTooFar/Clickable/Interactions" index="1" node_paths=PackedStringArray("dialog")]
-script = ExtResource("3_liekk")
-madtalk_sheet_id = "test_dialog_0"
-dialog = NodePath("Dialog")
-
-[node name="Dialog" parent="ObjectTooFar/Clickable/Interactions/Talk" instance=ExtResource("4_2ixwf")]
-
-[node name="Take" type="Node" parent="ObjectTooFar/Clickable/Interactions" index="2" node_paths=PackedStringArray("animation_player")]
-script = ExtResource("5_f7qxq")
-item = SubResource("Resource_twrno")
-inventory = ExtResource("8_f7qxq")
-animation_player = NodePath("AnimationPlayer")
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="ObjectTooFar/Clickable/Interactions/Take"]
-libraries = {
-&"": SubResource("AnimationLibrary_daoxy")
-}
-
 [node name="Player" type="Polygon2D" parent="."]
 position = Vector2(275, 136)
 polygon = PackedVector2Array(-9, -57, 10, 84, -13, 84)
 
 [node name="Toast" parent="." instance=ExtResource("9_dkoq0")]
 
+[node name="Backpack" type="Node" parent="."]
+script = ExtResource("11_twrno")
+metadata/_custom_type_script = "uid://dws4ikeu8uour"
+
+[node name="SideEffectHandler" type="Node" parent="." node_paths=PackedStringArray("backpack")]
+script = ExtResource("12_twrno")
+backpack = NodePath("../Backpack")
+metadata/_custom_type_script = "uid://4lfnsuiqckhk"
+
 [editable path="Object/Clickable"]
-[editable path="ObjectTooFar/Clickable"]

@@ -11,7 +11,7 @@ var tween: Tween
 
 func _enter_tree() -> void:
 	saved_modulate = effect_target.modulate
-	visible = effect_target.visible
+	effect_target.visible = visible
 	visibility_changed.connect(_on_visibility_changed)
 
 
