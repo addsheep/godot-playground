@@ -26,6 +26,7 @@ condition_type = 10
 condition_values = []
 effect_type = 10
 effect_values = []
+port_index = -1
 
 [sub_resource type="Resource" id="kur6e"]
 script = ExtResource("4_f2ijm")
@@ -43,127 +44,6 @@ sheet_id = "game_start"
 sheet_description = "auto played at the beginning of the game"
 next_sequence_id = 1
 nodes = [SubResource("kur6e")]
-
-[sub_resource type="Resource" id="gi4cx"]
-script = ExtResource("2_48vp3")
-item_type = 0
-connected_to_id = -1
-message_speaker_id = "HelloWorld"
-message_speaker_variant = ""
-message_voice_clip = ""
-message_text = "Hello! "
-message_voice_clip_locales = {}
-message_text_locales = {}
-message_hide_on_end = 0
-condition_type = 10
-condition_values = []
-effect_type = 10
-effect_values = []
-
-[sub_resource type="Resource" id="mjnvi"]
-script = ExtResource("2_48vp3")
-item_type = 0
-connected_to_id = -1
-message_speaker_id = "Momo"
-message_speaker_variant = ""
-message_voice_clip = ""
-message_text = "Do you want to exit?"
-message_voice_clip_locales = {}
-message_text_locales = {}
-message_hide_on_end = 0
-condition_type = 10
-condition_values = []
-effect_type = 10
-effect_values = []
-
-[sub_resource type="Resource" id="Resource_v4udn"]
-script = ExtResource("3_dways")
-text = "here is an option"
-text_locales = {
-"": "here is an option"
-}
-connected_to_id = 1
-is_conditional = false
-condition_variable = ""
-condition_operator = "="
-condition_value = ""
-autodisable_mode = 0
-inactive_mode = 0
-
-[sub_resource type="Resource" id="Resource_kur6e"]
-script = ExtResource("3_dways")
-text = "or this one"
-text_locales = {
-"": "or this one"
-}
-connected_to_id = 0
-is_conditional = false
-condition_variable = ""
-condition_operator = "="
-condition_value = ""
-autodisable_mode = 0
-inactive_mode = 0
-
-[sub_resource type="Resource" id="Resource_0mplr"]
-script = ExtResource("4_f2ijm")
-sequence_id = 0
-position = Vector2(180, 20)
-comment = ""
-items = [SubResource("gi4cx"), SubResource("mjnvi")]
-options = [SubResource("Resource_v4udn"), SubResource("Resource_kur6e")]
-continue_sequence_id = -1
-continue_port_index = -1
-
-[sub_resource type="Resource" id="wspnu"]
-script = ExtResource("2_48vp3")
-item_type = 0
-connected_to_id = -1
-message_speaker_id = "???"
-message_speaker_variant = ""
-message_voice_clip = ""
-message_text = "Bye!"
-message_voice_clip_locales = {}
-message_text_locales = {}
-message_hide_on_end = 0
-condition_type = 10
-condition_values = []
-effect_type = 10
-effect_values = []
-
-[sub_resource type="Resource" id="Resource_mjnvi"]
-script = ExtResource("2_48vp3")
-item_type = 2
-connected_to_id = -1
-message_speaker_id = ""
-message_speaker_variant = ""
-message_voice_clip = ""
-message_text = ""
-message_voice_clip_locales = {}
-message_text_locales = {}
-message_hide_on_end = 0
-condition_type = 10
-condition_values = []
-effect_type = 10
-effect_values = ["test_effect", "i
-dont
-know"]
-
-[sub_resource type="Resource" id="6yf53"]
-script = ExtResource("4_f2ijm")
-sequence_id = 1
-position = Vector2(700, 20)
-comment = ""
-items = [SubResource("wspnu"), SubResource("Resource_mjnvi")]
-options = []
-continue_sequence_id = -1
-continue_port_index = 0
-
-[sub_resource type="Resource" id="Resource_hkg3h"]
-script = ExtResource("5_vkpn8")
-sheet_id = "test_dialog_0"
-sheet_description = ""
-next_sequence_id = 5
-nodes = [SubResource("Resource_0mplr"), SubResource("6yf53")]
 
 [sub_resource type="Resource" id="yhi86"]
 script = ExtResource("2_48vp3")
@@ -333,6 +213,127 @@ sheet_id = "test_backpack"
 sheet_description = ""
 next_sequence_id = 3
 nodes = [SubResource("lehqt"), SubResource("wmu1q"), SubResource("Resource_uj1nl")]
+
+[sub_resource type="Resource" id="gi4cx"]
+script = ExtResource("2_48vp3")
+item_type = 0
+connected_to_id = -1
+message_speaker_id = "HelloWorld"
+message_speaker_variant = ""
+message_voice_clip = ""
+message_text = "Hello! "
+message_voice_clip_locales = {}
+message_text_locales = {}
+message_hide_on_end = 0
+condition_type = 10
+condition_values = []
+effect_type = 10
+effect_values = []
+
+[sub_resource type="Resource" id="mjnvi"]
+script = ExtResource("2_48vp3")
+item_type = 0
+connected_to_id = -1
+message_speaker_id = "Momo"
+message_speaker_variant = ""
+message_voice_clip = ""
+message_text = "Do you want to exit?"
+message_voice_clip_locales = {}
+message_text_locales = {}
+message_hide_on_end = 0
+condition_type = 10
+condition_values = []
+effect_type = 10
+effect_values = []
+
+[sub_resource type="Resource" id="Resource_v4udn"]
+script = ExtResource("3_dways")
+text = "here is an option"
+text_locales = {
+"": "here is an option"
+}
+connected_to_id = 1
+is_conditional = false
+condition_variable = ""
+condition_operator = "="
+condition_value = ""
+autodisable_mode = 0
+inactive_mode = 0
+
+[sub_resource type="Resource" id="Resource_kur6e"]
+script = ExtResource("3_dways")
+text = "or this one"
+text_locales = {
+"": "or this one"
+}
+connected_to_id = 0
+is_conditional = false
+condition_variable = ""
+condition_operator = "="
+condition_value = ""
+autodisable_mode = 0
+inactive_mode = 0
+
+[sub_resource type="Resource" id="Resource_0mplr"]
+script = ExtResource("4_f2ijm")
+sequence_id = 0
+position = Vector2(180, 20)
+comment = ""
+items = [SubResource("gi4cx"), SubResource("mjnvi")]
+options = [SubResource("Resource_v4udn"), SubResource("Resource_kur6e")]
+continue_sequence_id = -1
+continue_port_index = -1
+
+[sub_resource type="Resource" id="wspnu"]
+script = ExtResource("2_48vp3")
+item_type = 0
+connected_to_id = -1
+message_speaker_id = "???"
+message_speaker_variant = ""
+message_voice_clip = ""
+message_text = "Bye!"
+message_voice_clip_locales = {}
+message_text_locales = {}
+message_hide_on_end = 0
+condition_type = 10
+condition_values = []
+effect_type = 10
+effect_values = []
+
+[sub_resource type="Resource" id="Resource_mjnvi"]
+script = ExtResource("2_48vp3")
+item_type = 2
+connected_to_id = -1
+message_speaker_id = ""
+message_speaker_variant = ""
+message_voice_clip = ""
+message_text = ""
+message_voice_clip_locales = {}
+message_text_locales = {}
+message_hide_on_end = 0
+condition_type = 10
+condition_values = []
+effect_type = 10
+effect_values = ["test_effect", "i
+dont
+know"]
+
+[sub_resource type="Resource" id="6yf53"]
+script = ExtResource("4_f2ijm")
+sequence_id = 1
+position = Vector2(700, 20)
+comment = ""
+items = [SubResource("wspnu"), SubResource("Resource_mjnvi")]
+options = []
+continue_sequence_id = -1
+continue_port_index = 0
+
+[sub_resource type="Resource" id="Resource_hkg3h"]
+script = ExtResource("5_vkpn8")
+sheet_id = "test_dialog_0"
+sheet_description = ""
+next_sequence_id = 5
+nodes = [SubResource("Resource_0mplr"), SubResource("6yf53")]
 
 [resource]
 script = ExtResource("1_giduu")

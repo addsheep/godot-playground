@@ -1,6 +1,7 @@
 extends Node
 
-@export var madtalk_sheet_id: String
+## The dialog sheet id
+@export var madtalk_sheet_id: String = ""
 @export var dialog: Dialog
 
 
