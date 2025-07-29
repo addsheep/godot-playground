@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://dx32fxlnnhmds"]
+[gd_scene load_steps=27 format=3 uid="uid://dx32fxlnnhmds"]
 
 [ext_resource type="Script" uid="uid://gcbdmpbqpcyk" path="res://src/cutscene/cutscene.gd" id="1_5kbu1"]
 [ext_resource type="Script" uid="uid://sypytevx3f1d" path="res://src/dialog/dialog.gd" id="2_l4865"]
@@ -18,6 +18,7 @@
 [ext_resource type="PackedScene" uid="uid://dwjdpucscrr7m" path="res://src/interaction/clickable.tscn" id="16_vnkqg"]
 [ext_resource type="Script" uid="uid://c7n1mamnfj07v" path="res://src/interaction/perform_look.gd" id="17_eajde"]
 [ext_resource type="Texture2D" uid="uid://200bqpuqfn6m" path="res://addons/madtalk/images/icon_condition.png" id="18_r782i"]
+[ext_resource type="PackedScene" uid="uid://bgiuk7jpdbis4" path="res://src/toast/toast.tscn" id="19_l4865"]
 
 [sub_resource type="Animation" id="Animation_fyndt"]
 resource_name = "default"
@@ -265,6 +266,8 @@ message = "What is it?"
 
 [node name="TextureRect" parent="World/Clickable" index="1"]
 texture = ExtResource("18_r782i")
+
+[node name="Toast" parent="." instance=ExtResource("19_l4865")]
 
 [connection signal="tree_exiting" from="StartCutScene" to="AutoFadeWorld" method="show"]
 [connection signal="dialog_finished" from="StartCutScene/AnimationPlayer/Dialog" to="StartCutScene" method="end_cutscene" unbinds=2]
