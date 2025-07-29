@@ -23,11 +23,11 @@ func perform() -> void:
 	var side_effect_text: String
 	if side_effect:
 		if !_side_effect_visited or repeat_side_effect:
-			GlobalEvents.side_effect_requested.emit(side_effect)
+			GlobalServiceRequests.side_effect.emit(side_effect)
 			side_effect_text = side_effect.get_rich_text()
 		_side_effect_visited = true
 
-	Toast.static_show(message + "\n" + side_effect_text, -1)
+	GlobalServiceRequests.toast.emit(message + "\n" + side_effect_text, -1)
 
 
 func _init() -> void:

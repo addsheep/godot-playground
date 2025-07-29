@@ -4,7 +4,7 @@ class_name SideEffectHandler extends Node
 
 
 func _enter_tree() -> void:
-	GlobalEvents.side_effect_requested.connect(_process_side_effect)
+	GlobalServiceRequests.side_effect.connect(_process_side_effect)
 
 
 func _process_side_effect(side_effect: SideEffect) -> void:

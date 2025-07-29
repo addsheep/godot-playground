@@ -25,7 +25,7 @@ buses/default_bus_layout="uid://bu503ur7p8y2a"
 [autoload]
 
 MadTalkGlobals="*res://addons/madtalk/runtime/MadTalkGlobals.tscn"
-GlobalEvents="*res://src/scripts/global_events.gd"
+GlobalServiceRequests="*res://src/scripts/global_service_requests.gd"
 
 [debug]
 

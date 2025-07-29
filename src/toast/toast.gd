@@ -1,7 +1,5 @@
 class_name Toast extends Node
 
-static var instance: Toast
-
 @export var default_duration: float = 1.0
 
 @onready var _toast_ui: CanvasItem = %AutoFade
@@ -11,15 +9,8 @@ var _msg_queue: Array  ## [[msg, duration]]
 var _current_duration: float = -1
 
 
-static func static_show(msg: String, duration: float) -> void:
-	if instance:
-		instance.show(msg, duration)
-	else:
-		print_debug("Toast: %s" % msg)
-
-
 func _ready() -> void:
-	instance = self
+	GlobalServiceRequests.toast.connect(show)
 
 
 func _input(event: InputEvent) -> void:
