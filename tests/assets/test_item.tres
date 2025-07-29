@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://ccp7fayv6p7yk"]
 
-[ext_resource type="Script" uid="uid://b0y802bsau21n" path="res://src/scripts/item.gd" id="1_scflw"]
+[ext_resource type="Script" uid="uid://b0y802bsau21n" path="res://src/scripts/item_resource.gd" id="1_scflw"]
 [ext_resource type="Texture2D" uid="uid://dqt1wi0i1aqol" path="res://addons/madtalk/images/icon_effect.png" id="1_wr2ec"]
 
 [resource]
