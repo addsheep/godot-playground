@@ -5,3 +5,6 @@ extends Node
 signal side_effect(side_effect: SideEffect)
 
 signal toast(msg: String, duration: float)
+
+signal start_quest(id: String)
+signal increment_quest(id: String)
