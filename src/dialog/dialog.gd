@@ -12,21 +12,24 @@ const CUSTOM_CONDITION_CHECK_ITEM := "check_item_has_at_least"
 ## Start a quest. arg0: quest id.
 const CUSTOM_EFFECT_START_QUEST := "effect_start_quest"
 ## Check if a quest is available. arg0: quest id
-const CUSTOM_CONDITION_CHECK_QUEST_available := "check_is_quest_available"
+const CUSTOM_CONDITION_CHECK_QUEST_AVAILABLE := "is_quest_available"
 ## Check if a quest has started. arg0: quest id
-const CUSTOM_CONDITION_CHECK_QUEST_STARTED := "check_has_quest_started"
+const CUSTOM_CONDITION_CHECK_QUEST_STARTED := "has_quest_started"
+## Check if a quest has completed. arg0: quest id
+const CUSTOM_CONDITION_CHECK_QUEST_COMPLETED := "is_quest_completed"
 
 ## The nodes to act on custom effects and check custom conditions.
 ## They should implement the methods specified in "callback_method_map".
 ## The first node providing the matching method will be called.
 @export var custom_callback_nodes: Array[Node]
 @export var callback_method_map: Dictionary = {
-	CUSTOM_EFFECT_GIVE_ITEM: "add_str",
-	CUSTOM_EFFECT_TAKE_ITEM: "remove_str",
+	CUSTOM_EFFECT_GIVE_ITEM: "add",
+	CUSTOM_EFFECT_TAKE_ITEM: "remove",
 	CUSTOM_CONDITION_CHECK_ITEM: "has_at_least",
 	CUSTOM_EFFECT_START_QUEST: "start_quest",
-	CUSTOM_CONDITION_CHECK_QUEST_available: "is_quest_available",
-	CUSTOM_CONDITION_CHECK_QUEST_STARTED: "has_quest_started"
+	CUSTOM_CONDITION_CHECK_QUEST_AVAILABLE: "is_quest_available",
+	CUSTOM_CONDITION_CHECK_QUEST_STARTED: "has_quest_started",
+	CUSTOM_CONDITION_CHECK_QUEST_COMPLETED: "is_quest_completed"
 }
 @onready var _madtalk: Node = $"Madtalk"
 @onready var _main: Control = %DialogMain
@@ -34,15 +37,9 @@ const CUSTOM_CONDITION_CHECK_QUEST_STARTED := "check_has_quest_started"
 var _dialogs_started: Dictionary  # sheet: { sequence: $times_started }
 
 
-func start(sheet: String, sequence: int = 0) -> void:
-	_madtalk.start_dialog(sheet, sequence)
-
-
-func get_started_times(sheet: String, sequence: int = 0) -> bool:
-	return _dialogs_started.get(sheet, {}).get(sequence, 0)
-
-
 func _ready() -> void:
+	GlobalServiceRequests.start_dialog.connect(start)
+
 	_main.gui_input.connect(_gui_input)
 	_madtalk.dialog_started.connect(_on_dialog_started)
 	_madtalk.dialog_finished.connect(_on_dialog_finished)
@@ -71,6 +68,14 @@ func _unhandled_key_input(event: InputEvent) -> void:
 		_main.accept_event()
 
 
+func start(sheet: String, sequence: int = 0) -> void:
+	_madtalk.start_dialog(sheet, sequence)
+
+
+func get_started_times(sheet: String, sequence: int = 0) -> bool:
+	return _dialogs_started.get(sheet, {}).get(sequence, 0)
+
+
 func _on_dialog_started(sheet_name: String, sequence: int) -> void:
 	var sequence_table: Dictionary = _dialogs_started.get_or_add(sheet_name, {})
 	sequence_table[sequence] = sequence_table.get(sequence, 0) + 1
@@ -86,17 +91,18 @@ func _on_custom_effect(effect_id: String, args: Array) -> void:
 		print_debug("Effect not implemented: %s" % effect_id)
 	for callback_node in custom_callback_nodes:
 		if callback_node.has_method(callback_method_map[effect_id]):
-			callback_node.call(callback_method_map[effect_id], args)
+			callback_node.callv(callback_method_map[effect_id], args)
 			return
 	print_debug("Effect callback not found in any node: %s" % effect_id)
 
 
 func _eval_custom_condition(condition_id: String, args: Array) -> bool:
 	if !callback_method_map.has(condition_id):
+		print_debug("Custom condition not found in map")
 		return false
 	for callback_node in custom_callback_nodes:
 		if callback_node.has_method(callback_method_map[condition_id]):
-			return callback_node.call(callback_method_map[condition_id], args)
+			return callback_node.callv(callback_method_map[condition_id], args)
 
 	print_debug("Custom condition not found in any node: %s" % condition_id)
 	return false

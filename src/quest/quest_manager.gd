@@ -32,6 +32,10 @@ func has_quest_started(id: String) -> bool:
 	return _quest_table.has(id) and _quest_table[id].started
 
 
+func is_quest_completed(id: String) -> bool:
+	return _quest_table.has(id) and _quest_table[id].is_completed()
+
+
 func _get_active_quests(out: Array[Quest]) -> void:
 	out.clear()
 	for quest: Quest in _quest_table.values():

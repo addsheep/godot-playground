@@ -14,15 +14,15 @@ func _ready() -> void:
 
 
 ## Dialog custom callbacks
-func add_str(args: Array) -> void:
-	var item: Item = Item.item_from_type(args[0])
+func add(type: String, amount: String) -> void:
+	var item: Item = Item.item_from_type(type)
 	if item:
-		_inventory.add(item, int(args[1]))
+		_inventory.add(item, int(amount))
 
 
-func remove_str(args: Array) -> void:
-	_inventory.remove(args[0], int(args[1]))
+func remove(type: String, amount: String) -> void:
+	_inventory.remove(type, int(amount))
 
 
-func has_at_least(args: Array) -> bool:
-	return _inventory.get_item_count(args[0]) >= int(args[1])
+func has_at_least(type: String, amount: String) -> bool:
+	return _inventory.get_item_count(type) >= int(amount)

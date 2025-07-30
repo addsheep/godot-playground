@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="DialogData" load_steps=30 format=3 uid="uid://dxkjjrap15vxu"]
+[gd_resource type="Resource" script_class="DialogData" load_steps=43 format=3 uid="uid://dxkjjrap15vxu"]
 
 [ext_resource type="Script" uid="uid://bw2q2eucjkylk" path="res://addons/madtalk/components/resources/DialogData.gd" id="1_giduu"]
 [ext_resource type="Script" uid="uid://c2bv5lwcvdmrb" path="res://addons/madtalk/components/resources/DialogNodeItemData.gd" id="2_48vp3"]
@@ -60,6 +60,7 @@ condition_type = 10
 condition_values = []
 effect_type = 10
 effect_values = []
+port_index = -1
 
 [sub_resource type="Resource" id="ggobe"]
 script = ExtResource("2_48vp3")
@@ -170,6 +171,7 @@ condition_type = 10
 condition_values = []
 effect_type = 10
 effect_values = []
+port_index = -1
 
 [sub_resource type="Resource" id="wmu1q"]
 script = ExtResource("4_f2ijm")
@@ -196,6 +198,7 @@ condition_type = 10
 condition_values = []
 effect_type = 10
 effect_values = []
+port_index = -1
 
 [sub_resource type="Resource" id="Resource_uj1nl"]
 script = ExtResource("4_f2ijm")
@@ -229,6 +232,7 @@ condition_type = 10
 condition_values = []
 effect_type = 10
 effect_values = []
+port_index = -1
 
 [sub_resource type="Resource" id="mjnvi"]
 script = ExtResource("2_48vp3")
@@ -299,6 +303,7 @@ condition_type = 10
 condition_values = []
 effect_type = 10
 effect_values = []
+port_index = -1
 
 [sub_resource type="Resource" id="Resource_mjnvi"]
 script = ExtResource("2_48vp3")
@@ -335,11 +340,187 @@ sheet_description = ""
 next_sequence_id = 5
 nodes = [SubResource("Resource_0mplr"), SubResource("6yf53")]
 
+[sub_resource type="Resource" id="Resource_6d3fn"]
+script = ExtResource("2_48vp3")
+item_type = 1
+connected_to_id = 1
+message_speaker_id = ""
+message_speaker_variant = ""
+message_voice_clip = ""
+message_text = ""
+message_voice_clip_locales = {}
+message_text_locales = {}
+message_hide_on_end = 0
+condition_type = 10
+condition_values = ["has_quest_started", "test_quest"]
+effect_type = 10
+effect_values = []
+
+[sub_resource type="Resource" id="Resource_ghijk"]
+script = ExtResource("2_48vp3")
+item_type = 1
+connected_to_id = 3
+message_speaker_id = ""
+message_speaker_variant = ""
+message_voice_clip = ""
+message_text = ""
+message_voice_clip_locales = {}
+message_text_locales = {}
+message_hide_on_end = 0
+condition_type = 10
+condition_values = ["is_quest_completed", "test_quest"]
+effect_type = 10
+effect_values = []
+
+[sub_resource type="Resource" id="Resource_86kbs"]
+script = ExtResource("2_48vp3")
+item_type = 0
+connected_to_id = -1
+message_speaker_id = ""
+message_speaker_variant = ""
+message_voice_clip = ""
+message_text = "Congrats!"
+message_voice_clip_locales = {}
+message_text_locales = {}
+message_hide_on_end = 0
+condition_type = 10
+condition_values = []
+effect_type = 10
+effect_values = []
+
+[sub_resource type="Resource" id="Resource_m2qb1"]
+script = ExtResource("4_f2ijm")
+sequence_id = 0
+position = Vector2(-100, -20)
+comment = ""
+items = [SubResource("Resource_6d3fn"), SubResource("Resource_ghijk"), SubResource("Resource_86kbs")]
+options = []
+continue_sequence_id = -1
+continue_port_index = 2
+
+[sub_resource type="Resource" id="Resource_fwb2u"]
+script = ExtResource("2_48vp3")
+item_type = 1
+connected_to_id = 2
+message_speaker_id = ""
+message_speaker_variant = ""
+message_voice_clip = ""
+message_text = ""
+message_voice_clip_locales = {}
+message_text_locales = {}
+message_hide_on_end = 0
+condition_type = 10
+condition_values = ["is_quest_available", "test_quest"]
+effect_type = 10
+effect_values = []
+
+[sub_resource type="Resource" id="Resource_ogynd"]
+script = ExtResource("2_48vp3")
+item_type = 0
+connected_to_id = -1
+message_speaker_id = ""
+message_speaker_variant = ""
+message_voice_clip = ""
+message_text = "Here is your quest"
+message_voice_clip_locales = {}
+message_text_locales = {}
+message_hide_on_end = 0
+condition_type = 10
+condition_values = []
+effect_type = 10
+effect_values = []
+
+[sub_resource type="Resource" id="Resource_1yy6g"]
+script = ExtResource("2_48vp3")
+item_type = 2
+connected_to_id = -1
+message_speaker_id = ""
+message_speaker_variant = ""
+message_voice_clip = ""
+message_text = ""
+message_voice_clip_locales = {}
+message_text_locales = {}
+message_hide_on_end = 0
+condition_type = 10
+condition_values = []
+effect_type = 10
+effect_values = ["effect_start_quest", "test_quest"]
+
+[sub_resource type="Resource" id="Resource_iyv7e"]
+script = ExtResource("4_f2ijm")
+sequence_id = 1
+position = Vector2(507, -30)
+comment = ""
+items = [SubResource("Resource_fwb2u"), SubResource("Resource_ogynd"), SubResource("Resource_1yy6g")]
+options = []
+continue_sequence_id = -1
+continue_port_index = 1
+
+[sub_resource type="Resource" id="ig706"]
+script = ExtResource("2_48vp3")
+item_type = 0
+connected_to_id = -1
+message_speaker_id = ""
+message_speaker_variant = ""
+message_voice_clip = ""
+message_text = "The quest is not available"
+message_voice_clip_locales = {}
+message_text_locales = {}
+message_hide_on_end = 0
+condition_type = 10
+condition_values = []
+effect_type = 10
+effect_values = []
+
+[sub_resource type="Resource" id="uwwod"]
+script = ExtResource("4_f2ijm")
+sequence_id = 2
+position = Vector2(940, 0)
+comment = ""
+items = [SubResource("ig706")]
+options = []
+continue_sequence_id = -1
+continue_port_index = 0
+
+[sub_resource type="Resource" id="Resource_t2a6b"]
+script = ExtResource("2_48vp3")
+item_type = 0
+connected_to_id = -1
+message_speaker_id = ""
+message_speaker_variant = ""
+message_voice_clip = ""
+message_text = "Quest is in progress"
+message_voice_clip_locales = {}
+message_text_locales = {}
+message_hide_on_end = 0
+condition_type = 10
+condition_values = []
+effect_type = 10
+effect_values = []
+
+[sub_resource type="Resource" id="Resource_lge7f"]
+script = ExtResource("4_f2ijm")
+sequence_id = 3
+position = Vector2(520, 260)
+comment = ""
+items = [SubResource("Resource_t2a6b")]
+options = []
+continue_sequence_id = -1
+continue_port_index = 0
+
+[sub_resource type="Resource" id="Resource_dsmgf"]
+script = ExtResource("5_vkpn8")
+sheet_id = "test_quest_dialog"
+sheet_description = ""
+next_sequence_id = 4
+nodes = [SubResource("Resource_m2qb1"), SubResource("Resource_iyv7e"), SubResource("uwwod"), SubResource("Resource_lge7f")]
+
 [resource]
 script = ExtResource("1_giduu")
 version = 1.0
 sheets = {
 "game_start": SubResource("v4udn"),
 "test_backpack": SubResource("2fyt0"),
-"test_dialog_0": SubResource("Resource_hkg3h")
+"test_dialog_0": SubResource("Resource_hkg3h"),
+"test_quest_dialog": SubResource("Resource_dsmgf")
 }

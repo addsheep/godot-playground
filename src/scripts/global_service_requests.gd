@@ -8,6 +8,9 @@ signal side_effect(side_effect: SideEffect)
 ## Show a toast message.
 signal toast(msg: String, duration: float)
 
+## Start a dialog.
+signal start_dialog(sheet: String, sequence: int)
+
 ## Update/access quests.
 signal start_quest(id: String)
 signal increment_quest(id: String, delta: int)
