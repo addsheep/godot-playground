@@ -2,20 +2,31 @@ class_name Dialog extends Node
 
 signal dialog_finished(sheet: String, sequence: int)
 
-## Give items to the player. arg 0: item type, arg1: amount
+## Give items to the player. arg0: item type, arg1: amount
 const CUSTOM_EFFECT_GIVE_ITEM := "effect_give_item"
-## Take items from the player. arg 0: item type, arg1: amount
+## Take items from the player. arg0: item type, arg1: amount
 const CUSTOM_EFFECT_TAKE_ITEM := "effect_take_item"
-## Check amount of items. arg0: item type
+## Check amount of items. arg0: item type, arg1: amount
 const CUSTOM_CONDITION_CHECK_ITEM := "check_item_has_at_least"
 
-## A node to act on custom effects and check custom conditions.
-## It should implement the methods specified in "callback_method_map".
-@export var custom_callback_node: Node
+## Start a quest. arg0: quest id.
+const CUSTOM_EFFECT_START_QUEST := "effect_start_quest"
+## Check if a quest is available. arg0: quest id
+const CUSTOM_CONDITION_CHECK_QUEST_available := "check_is_quest_available"
+## Check if a quest has started. arg0: quest id
+const CUSTOM_CONDITION_CHECK_QUEST_STARTED := "check_has_quest_started"
+
+## The nodes to act on custom effects and check custom conditions.
+## They should implement the methods specified in "callback_method_map".
+## The first node providing the matching method will be called.
+@export var custom_callback_nodes: Array[Node]
 @export var callback_method_map: Dictionary = {
 	CUSTOM_EFFECT_GIVE_ITEM: "add_str",
 	CUSTOM_EFFECT_TAKE_ITEM: "remove_str",
-	CUSTOM_CONDITION_CHECK_ITEM: "has_at_least"
+	CUSTOM_CONDITION_CHECK_ITEM: "has_at_least",
+	CUSTOM_EFFECT_START_QUEST: "start_quest",
+	CUSTOM_CONDITION_CHECK_QUEST_available: "is_quest_available",
+	CUSTOM_CONDITION_CHECK_QUEST_STARTED: "has_quest_started"
 }
 @onready var _madtalk: Node = $"Madtalk"
 @onready var _main: Control = %DialogMain
@@ -71,25 +82,21 @@ func _on_dialog_finished(sheet: String, sequence: int) -> void:
 
 
 func _on_custom_effect(effect_id: String, args: Array) -> void:
-	if !custom_callback_node:
-		return
-	if (
-		callback_method_map.has(effect_id)
-		and custom_callback_node.has_method(callback_method_map[effect_id])
-	):
-		custom_callback_node.call(callback_method_map[effect_id], args)
-	else:
+	if !callback_method_map.has(effect_id):
 		print_debug("Effect not implemented: %s" % effect_id)
+	for callback_node in custom_callback_nodes:
+		if callback_node.has_method(callback_method_map[effect_id]):
+			callback_node.call(callback_method_map[effect_id], args)
+			return
+	print_debug("Effect callback not found in any node: %s" % effect_id)
 
 
 func _eval_custom_condition(condition_id: String, args: Array) -> bool:
-	if !custom_callback_node:
+	if !callback_method_map.has(condition_id):
 		return false
-	if (
-		callback_method_map.has(condition_id)
-		and custom_callback_node.has_method(callback_method_map[condition_id])
-	):
-		return custom_callback_node.call(callback_method_map[condition_id], args)
+	for callback_node in custom_callback_nodes:
+		if callback_node.has_method(callback_method_map[condition_id]):
+			return callback_node.call(callback_method_map[condition_id], args)
 
-	print_debug("Condition not implemented: %s" % condition_id)
+	print_debug("Custom condition not found in any node: %s" % condition_id)
 	return false
