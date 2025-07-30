@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://djk1sebtueu62"]
+[gd_scene load_steps=12 format=3 uid="uid://djk1sebtueu62"]
 
 [ext_resource type="PackedScene" uid="uid://dwjdpucscrr7m" path="res://src/interaction/clickable.tscn" id="1_x8q5o"]
 [ext_resource type="Script" uid="uid://c7n1mamnfj07v" path="res://src/interaction/perform_look.gd" id="2_4rxwg"]
@@ -6,9 +6,7 @@
 [ext_resource type="Script" uid="uid://bchl7kx6fwell" path="res://src/interaction/perform_dialog.gd" id="3_liekk"]
 [ext_resource type="PackedScene" uid="uid://cuqg3eu58tvfr" path="res://src/dialog/dialog.tscn" id="4_2ixwf"]
 [ext_resource type="Script" uid="uid://cc7oy4nwvhp2o" path="res://src/interaction/perform_take.gd" id="5_f7qxq"]
-[ext_resource type="Texture2D" uid="uid://3yr87ikvahav" path="res://addons/resource_databases/editor_only/ui/icons/tick_clean.svg" id="6_dkoq0"]
-[ext_resource type="Script" uid="uid://b0y802bsau21n" path="res://src/scripts/item_resource.gd" id="7_pxdxa"]
-[ext_resource type="Resource" uid="uid://mrhqlq85qb1f" path="res://tests/assets/test_inventory.tres" id="8_f7qxq"]
+[ext_resource type="Resource" uid="uid://ccp7fayv6p7yk" path="res://tests/assets/test_item.tres" id="7_jwci2"]
 [ext_resource type="PackedScene" uid="uid://bgiuk7jpdbis4" path="res://src/toast/toast.tscn" id="9_dkoq0"]
 [ext_resource type="Script" uid="uid://dws4ikeu8uour" path="res://src/inventory/backpack.gd" id="11_twrno"]
 [ext_resource type="Script" uid="uid://4lfnsuiqckhk" path="res://src/side_effect/side_effect_handler.gd" id="12_twrno"]
@@ -18,78 +16,6 @@ script = ExtResource("3_jwci2")
 type = 0
 args = ["test_item", "2"]
 metadata/_custom_type_script = "uid://b3uue5g7vfyuh"
-
-[sub_resource type="Resource" id="Resource_twrno"]
-script = ExtResource("7_pxdxa")
-type = "example"
-display_name = "example"
-description = "haha lala"
-icon = ExtResource("6_dkoq0")
-metadata/_custom_type_script = "uid://b0y802bsau21n"
-
-[sub_resource type="Animation" id="Animation_dih17"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("../../..:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1, 1)]
-}
-
-[sub_resource type="Animation" id="Animation_r2eyd"]
-resource_name = "taken"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("../../..:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0.0333333, 0.98),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(1, 1), Vector2(1e-05, 1e-05)]
-}
-tracks/1/type = "method"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("../../..")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0.966667),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"queue_free"
-}]
-}
-tracks/2/type = "method"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("../..")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"hide"
-}]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_daoxy"]
-_data = {
-&"RESET": SubResource("Animation_dih17"),
-&"taken": SubResource("Animation_r2eyd")
-}
 
 [node name="Main" type="Node2D"]
 
@@ -112,16 +38,10 @@ dialog = NodePath("Dialog")
 
 [node name="Dialog" parent="Object/Clickable/Interactions/Talk" instance=ExtResource("4_2ixwf")]
 
-[node name="Take" type="Node" parent="Object/Clickable/Interactions" index="2" node_paths=PackedStringArray("animation_player")]
+[node name="Take" type="Node" parent="Object/Clickable/Interactions" index="2" node_paths=PackedStringArray("object")]
 script = ExtResource("5_f7qxq")
-item = SubResource("Resource_twrno")
-inventory = ExtResource("8_f7qxq")
-animation_player = NodePath("AnimationPlayer")
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Object/Clickable/Interactions/Take"]
-libraries = {
-&"": SubResource("AnimationLibrary_daoxy")
-}
+item = ExtResource("7_jwci2")
+object = NodePath("../..")
 
 [node name="Player" type="Polygon2D" parent="."]
 position = Vector2(275, 136)
