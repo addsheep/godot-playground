@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Quest" load_steps=2 format=3 uid="uid://clc8weticw7gi"]
+
+[ext_resource type="Script" uid="uid://w1bd2nk7g3mc" path="res://src/quest/quest_resource.gd" id="1_beut2"]
+
+[resource]
+script = ExtResource("1_beut2")
+id = "test_quest"
+short_description = "Collect 5 items"
+long_description = "An example quest to collect 5 items"
+prerequisite = Array[ExtResource("1_beut2")]([])
+target_amount = 5
+current_amount = 0
+started = false
+metadata/_custom_type_script = "uid://w1bd2nk7g3mc"

@@ -1,0 +1,57 @@
+[gd_scene load_steps=6 format=3 uid="uid://bmw6aa5d2quyn"]
+
+[ext_resource type="Script" uid="uid://qngaqtfolrik" path="res://tests/test_quest_system.gd" id="1_1dyxg"]
+[ext_resource type="Resource" uid="uid://clc8weticw7gi" path="res://tests/assets/test_quest.tres" id="2_5fvhd"]
+[ext_resource type="Resource" uid="uid://mrhqlq85qb1f" path="res://tests/assets/test_inventory.tres" id="3_ycbh3"]
+[ext_resource type="PackedScene" uid="uid://byx2qtoyynh8f" path="res://src/quest/quest_ui.tscn" id="4_qu6fi"]
+[ext_resource type="Script" uid="uid://br1g6tlcdqei0" path="res://src/quest/quest_manager.gd" id="5_5fvhd"]
+
+[node name="TestQuestSystem" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_1dyxg")
+example_quest = ExtResource("2_5fvhd")
+inventory = ExtResource("3_ycbh3")
+
+[node name="QuestUi" parent="." instance=ExtResource("4_qu6fi")]
+layout_mode = 1
+
+[node name="ButtonAdd" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -38.5
+offset_top = -15.5
+offset_right = 38.5
+offset_bottom = 15.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "add item"
+
+[node name="ButtonStart" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -39.0
+offset_top = -54.0
+offset_right = 38.0
+offset_bottom = -23.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "start quest"
+
+[node name="QuestManager" type="Node" parent="."]
+script = ExtResource("5_5fvhd")
+
+[connection signal="pressed" from="ButtonAdd" to="." method="add_inventory"]
+[connection signal="pressed" from="ButtonStart" to="." method="start_quest"]
