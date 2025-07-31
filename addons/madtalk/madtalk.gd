@@ -19,33 +19,38 @@ var MadTalkEditor_scene = preload("res://addons/madtalk/madtalk_editor.tscn")
 var viewport_icon = preload("res://addons/madtalk/images/madtalk_viewport_icon.png")
 
 # Inspector sheet_id editor
-var sheet_id_inspector_editor = preload("res://addons/madtalk/components/InspectorPluginSheetIDField.gd").new()
+var sheet_id_inspector_editor = (
+	preload("res://addons/madtalk/components/InspectorPluginSheetIDField.gd").new()
+)
 
 # Holds the main panel node in the viewport
 var main_panel
 
-func _enter_tree():
+
+func _enable_plugin() -> void:
 	add_autoload_singleton("MadTalkGlobals", "res://addons/madtalk/runtime/MadTalkGlobals.tscn")
-	
+
+
+func _enter_tree():
 	add_inspector_plugin(sheet_id_inspector_editor)
-	
+
 	main_panel = MadTalkEditor_scene.instantiate()
-	
+
 	get_editor_interface().get_editor_main_screen().add_child(main_panel)
 	main_panel.setup()
 	_make_visible(false)
 
 
-
+func _disable_plugin() -> void:
+	remove_autoload_singleton("MadTalkGlobals")
 
 
 func _exit_tree():
 	remove_inspector_plugin(sheet_id_inspector_editor)
-	
+
 	if main_panel:
 		main_panel.queue_free()
-	
-	remove_autoload_singleton("MadTalkGlobals")
+
 
 func _has_main_screen():
 	return true
@@ -62,7 +67,8 @@ func _get_plugin_name():
 
 
 func _get_plugin_icon():
-	return viewport_icon#get_editor_interface().get_base_control().get_icon("Node", "EditorIcons")
+	return viewport_icon  #get_editor_interface().get_base_control().get_icon("Node", "EditorIcons")
+
 
 func _save_external_data():
 	if main_panel:

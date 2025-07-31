@@ -26,7 +26,6 @@ condition_type = 10
 condition_values = []
 effect_type = 10
 effect_values = []
-port_index = -1
 
 [sub_resource type="Resource" id="kur6e"]
 script = ExtResource("4_f2ijm")
@@ -60,7 +59,6 @@ condition_type = 10
 condition_values = []
 effect_type = 10
 effect_values = []
-port_index = -1
 
 [sub_resource type="Resource" id="ggobe"]
 script = ExtResource("2_48vp3")
@@ -171,7 +169,6 @@ condition_type = 10
 condition_values = []
 effect_type = 10
 effect_values = []
-port_index = -1
 
 [sub_resource type="Resource" id="wmu1q"]
 script = ExtResource("4_f2ijm")
@@ -198,7 +195,6 @@ condition_type = 10
 condition_values = []
 effect_type = 10
 effect_values = []
-port_index = -1
 
 [sub_resource type="Resource" id="Resource_uj1nl"]
 script = ExtResource("4_f2ijm")
@@ -232,7 +228,6 @@ condition_type = 10
 condition_values = []
 effect_type = 10
 effect_values = []
-port_index = -1
 
 [sub_resource type="Resource" id="mjnvi"]
 script = ExtResource("2_48vp3")
@@ -303,7 +298,6 @@ condition_type = 10
 condition_values = []
 effect_type = 10
 effect_values = []
-port_index = -1
 
 [sub_resource type="Resource" id="Resource_mjnvi"]
 script = ExtResource("2_48vp3")
