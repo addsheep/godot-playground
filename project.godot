@@ -37,6 +37,7 @@ gdscript/warnings/unassigned_variable_op_assign=0
 
 directories/dch_directory={}
 directories/dtl_directory={
+"test_backpack_timeline": "res://tests/assets/test_backpack_timeline.dtl",
 "test_quest_timeline": "res://tests/assets/test_quest_timeline.dtl"
 }
 layout/style_directory={}

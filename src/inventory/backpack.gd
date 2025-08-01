@@ -12,7 +12,7 @@ func _ready() -> void:
 	if inventory_ui:
 		inventory_ui.inventory = inventory
 
-	GlobalServiceRequests.backpack_ready.emit(self)
+	GlobalServiceRequests.backpack_ready.emit(inventory)
 
 
 #region Dialo(madtalk) g custom callbacks
