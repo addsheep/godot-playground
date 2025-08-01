@@ -22,18 +22,3 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/h_separation = 8
 theme_override_constants/v_separation = 8
-
-[node name="Window" type="Window" parent="."]
-audio_listener_enable_2d = true
-physics_object_picking = true
-title = "TEST"
-size = Vector2i(800, 450)
-visible = false
-
-[node name="TestRoot" type="Node" parent="Window"]
-
-[node name="Button" type="Button" parent="Window/TestRoot"]
-offset_right = 8.0
-offset_bottom = 8.0
-text = "TEST
-"

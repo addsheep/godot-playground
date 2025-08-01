@@ -3,7 +3,6 @@ extends Node
 ## Find all tests in the folder and creates a button for each.
 
 @onready var _button_container: Control = %ButtonContainer
-@onready var _window: Window = $Window
 
 
 func _ready():
@@ -26,9 +25,5 @@ func _ready():
 
 func _start_test(test_path: String) -> void:
 	var node: Node = load(test_path).instantiate()
-	_window.get_child(0).queue_free()
-	_window.add_child(node)
-
-	_window.title = test_path.get_file()
-
-	_window.show()
+	get_parent().add_child(node)
+	queue_free()

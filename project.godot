@@ -25,7 +25,7 @@ buses/default_bus_layout="uid://bu503ur7p8y2a"
 [autoload]
 
 GlobalServiceRequests="*res://src/scripts/global_service_requests.gd"
-DialogicHandler="*res://src/dialog/dialogic_handler.gd"
+DialogicHandler="*res://src/scripts/dialogic_handler.gd"
 Dialogic="*res://addons/dialogic/Core/DialogicGameHandler.gd"
 
 [debug]
