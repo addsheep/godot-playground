@@ -3,9 +3,9 @@
 [ext_resource type="Script" uid="uid://qngaqtfolrik" path="res://tests/test_quest_system.gd" id="1_1dyxg"]
 [ext_resource type="Resource" uid="uid://clc8weticw7gi" path="res://tests/assets/test_quest.tres" id="2_5fvhd"]
 [ext_resource type="Resource" uid="uid://mrhqlq85qb1f" path="res://tests/assets/test_inventory.tres" id="3_ycbh3"]
+[ext_resource type="Resource" uid="uid://cgunfgyrdvbyq" path="res://tests/assets/test_quest_timeline.dtl" id="4_1xh8r"]
 [ext_resource type="PackedScene" uid="uid://byx2qtoyynh8f" path="res://src/quest/quest_ui.tscn" id="4_qu6fi"]
 [ext_resource type="Script" uid="uid://br1g6tlcdqei0" path="res://src/quest/quest_manager.gd" id="5_5fvhd"]
-[ext_resource type="PackedScene" uid="uid://cuqg3eu58tvfr" path="res://src/dialog/dialog.tscn" id="6_1xh8r"]
 
 [node name="TestQuestSystem" type="Control"]
 layout_mode = 3
@@ -17,6 +17,7 @@ grow_vertical = 2
 script = ExtResource("1_1dyxg")
 example_quest = ExtResource("2_5fvhd")
 inventory = ExtResource("3_ycbh3")
+dialog_timeline = ExtResource("4_1xh8r")
 
 [node name="QuestUi" parent="." instance=ExtResource("4_qu6fi")]
 layout_mode = 1
@@ -68,9 +69,6 @@ text = "start dialog"
 
 [node name="QuestManager" type="Node" parent="."]
 script = ExtResource("5_5fvhd")
-
-[node name="Dialog" parent="." node_paths=PackedStringArray("custom_callback_nodes") instance=ExtResource("6_1xh8r")]
-custom_callback_nodes = [NodePath("../QuestManager")]
 
 [connection signal="pressed" from="ButtonAdd" to="." method="add_inventory"]
 [connection signal="pressed" from="ButtonStart" to="." method="start_quest"]

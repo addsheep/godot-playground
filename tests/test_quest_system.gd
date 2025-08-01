@@ -2,7 +2,7 @@ extends Node
 
 @export var example_quest: Quest
 @export var inventory: Inventory
-@export var dialog_sheet: String = "test_quest_dialog"
+@export var dialog_timeline: DialogicTimeline
 
 var _item: Item
 
@@ -14,7 +14,7 @@ func _ready() -> void:
 
 
 func start_dialog() -> void:
-	GlobalServiceRequests.start_dialog.emit(dialog_sheet, 0)
+	Dialogic.start(dialog_timeline)
 
 
 func start_quest() -> void:

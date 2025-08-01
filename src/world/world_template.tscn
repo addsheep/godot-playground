@@ -11,7 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://criq7ti3sarma" path="res://assets/kenney/character_purple_walk_a.png" id="10_2mxrt"]
 [ext_resource type="PackedScene" uid="uid://bgiuk7jpdbis4" path="res://src/toast/toast.tscn" id="11_bjkti"]
 [ext_resource type="Texture2D" uid="uid://pitjyqj7brld" path="res://addons/resource_databases/editor_only/ui/icons/create_clean.svg" id="11_j5h6c"]
-[ext_resource type="PackedScene" uid="uid://cuqg3eu58tvfr" path="res://src/dialog/dialog.tscn" id="12_noj3q"]
+[ext_resource type="PackedScene" uid="uid://cuqg3eu58tvfr" path="res://src/dialog/dialog_madtalk.tscn" id="12_noj3q"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_srxbw"]
 

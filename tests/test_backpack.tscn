@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://dws4ikeu8uour" path="res://src/inventory/backpack.gd" id="1_patu0"]
 [ext_resource type="PackedScene" uid="uid://cf3pjhuf52brd" path="res://src/inventory/inventory_grid.tscn" id="2_patu0"]
 [ext_resource type="Resource" uid="uid://mrhqlq85qb1f" path="res://tests/assets/test_inventory.tres" id="3_7xs0w"]
-[ext_resource type="PackedScene" uid="uid://cuqg3eu58tvfr" path="res://src/dialog/dialog.tscn" id="4_7xs0w"]
+[ext_resource type="PackedScene" uid="uid://cuqg3eu58tvfr" path="res://src/dialog/dialog_madtalk.tscn" id="4_7xs0w"]
 
 [node name="Backpack" type="Control" node_paths=PackedStringArray("inventory_ui")]
 layout_mode = 3

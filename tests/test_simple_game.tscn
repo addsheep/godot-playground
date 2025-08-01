@@ -1,7 +1,7 @@
 [gd_scene load_steps=27 format=3 uid="uid://dx32fxlnnhmds"]
 
 [ext_resource type="Script" uid="uid://gcbdmpbqpcyk" path="res://src/cutscene/cutscene.gd" id="1_5kbu1"]
-[ext_resource type="Script" uid="uid://sypytevx3f1d" path="res://src/dialog/dialog.gd" id="2_l4865"]
+[ext_resource type="Script" uid="uid://sypytevx3f1d" path="res://src/dialog/dialog_madtalk.gd" id="2_l4865"]
 [ext_resource type="Script" uid="uid://c6av3xe4m2ujl" path="res://addons/madtalk/runtime/madtalk_runtime.gd" id="3_e7lxg"]
 [ext_resource type="AudioStream" uid="uid://dr553b0ej26vk" path="res://assets/sfx/click.wav" id="4_huwsf"]
 [ext_resource type="Script" uid="uid://cv3lb6eu4x3rb" path="res://src/scripts/auto_fade.gd" id="5_qwn1w"]

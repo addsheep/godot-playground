@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://1gh0myqdi6bq" path="res://src/character/click_movement.gd" id="1_vjlvy"]
 [ext_resource type="PackedScene" uid="uid://dwjdpucscrr7m" path="res://src/interaction/clickable.tscn" id="2_ih7aq"]
 [ext_resource type="Script" uid="uid://bchl7kx6fwell" path="res://src/interaction/perform_dialog.gd" id="3_pogcj"]
-[ext_resource type="PackedScene" uid="uid://cuqg3eu58tvfr" path="res://src/dialog/dialog.tscn" id="4_bka7l"]
+[ext_resource type="PackedScene" uid="uid://cuqg3eu58tvfr" path="res://src/dialog/dialog_madtalk.tscn" id="4_bka7l"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_vjlvy"]
 radius = 24.0832

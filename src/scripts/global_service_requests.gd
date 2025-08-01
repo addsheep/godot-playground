@@ -15,3 +15,7 @@ signal start_dialog(sheet: String, sequence: int)
 signal start_quest(id: String)
 signal increment_quest(id: String, delta: int)
 signal get_active_quests(out: Array[Quest])
+
+## Common service announcement
+signal backpack_ready(inventory: Inventory)
+signal quest_manager_ready(quest_manager: QuestManager)

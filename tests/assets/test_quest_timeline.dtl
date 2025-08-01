@@ -1,0 +1,11 @@
+if {DialogicHandler.is_quest_started("test_quest")}:
+	if {DialogicHandler.is_quest_completed("test_quest")}:
+		Quest is completed!
+	else:
+		Quest is in progress
+else:
+	if {DialogicHandler.is_quest_available("test_quest")}  :
+		Here is your quest
+		do DialogicHandler.start_quest("test_quest")
+	else:
+		Quest is unavailable
