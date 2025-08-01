@@ -27,7 +27,6 @@ theme_override_constants/v_separation = 8
 audio_listener_enable_2d = true
 physics_object_picking = true
 title = "TEST"
-initial_position = 1
 size = Vector2i(800, 450)
 visible = false
 

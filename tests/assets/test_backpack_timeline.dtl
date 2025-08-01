@@ -1,11 +1,11 @@
 Tell me what you want to do
-- Remove an item | [if  {DialogicHandler.has_items("test_item", 1)}]
+- Remove an item | [if {DialogicHandler.has_items("test_item", 1)}]
 	do DialogicHandler.add_item("test_item", -1)
 - Add an item
 	do DialogicHandler.add_item("test_item", 1)
-	if  {DialogicHandler.has_items("test_item", 1)}:
+	if {DialogicHandler.has_items("test_item", 1)}:
 		Item added!
 if {DialogicHandler.has_items("test_item", 3)}:
 	You've got enough!
 else:
-	jump
+jump

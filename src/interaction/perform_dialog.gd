@@ -1,9 +1,8 @@
 extends Node
 
 ## The dialog sheet id
-@export var madtalk_sheet_id: String = ""
-@export var dialog: Dialog
+@export var timeline: DialogicTimeline
 
 
 func perform() -> void:
-	dialog.start(madtalk_sheet_id)
+	Dialogic.start(timeline)

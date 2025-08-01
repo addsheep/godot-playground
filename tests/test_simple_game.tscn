@@ -1,9 +1,7 @@
-[gd_scene load_steps=27 format=3 uid="uid://dx32fxlnnhmds"]
+[gd_scene load_steps=24 format=3 uid="uid://dx32fxlnnhmds"]
 
 [ext_resource type="Script" uid="uid://gcbdmpbqpcyk" path="res://src/cutscene/cutscene.gd" id="1_5kbu1"]
-[ext_resource type="Script" uid="uid://sypytevx3f1d" path="res://src/dialog/dialog_madtalk.gd" id="2_l4865"]
-[ext_resource type="Script" uid="uid://c6av3xe4m2ujl" path="res://addons/madtalk/runtime/madtalk_runtime.gd" id="3_e7lxg"]
-[ext_resource type="AudioStream" uid="uid://dr553b0ej26vk" path="res://assets/sfx/click.wav" id="4_huwsf"]
+[ext_resource type="Resource" uid="uid://c2nvuwbetnodt" path="res://tests/assets/hello_timeline.dtl" id="2_uwqkg"]
 [ext_resource type="Script" uid="uid://cv3lb6eu4x3rb" path="res://src/scripts/auto_fade.gd" id="5_qwn1w"]
 [ext_resource type="AudioStream" uid="uid://o8mcsqxdvo68" path="res://assets/music/boobanger/vintage-boobanger-fullmix-210785.mp3" id="6_r3dqv"]
 [ext_resource type="Script" uid="uid://dy83sm3jk0w2w" path="res://src/interaction/interaction_controller.gd" id="7_pcjxp"]
@@ -17,7 +15,6 @@
 [ext_resource type="Texture2D" uid="uid://pitjyqj7brld" path="res://addons/resource_databases/editor_only/ui/icons/create_clean.svg" id="15_0b1uj"]
 [ext_resource type="PackedScene" uid="uid://dwjdpucscrr7m" path="res://src/interaction/clickable.tscn" id="16_vnkqg"]
 [ext_resource type="Script" uid="uid://c7n1mamnfj07v" path="res://src/interaction/perform_look.gd" id="17_eajde"]
-[ext_resource type="Texture2D" uid="uid://200bqpuqfn6m" path="res://addons/madtalk/images/icon_condition.png" id="18_r782i"]
 [ext_resource type="PackedScene" uid="uid://bgiuk7jpdbis4" path="res://src/toast/toast.tscn" id="19_l4865"]
 
 [sub_resource type="Animation" id="Animation_fyndt"]
@@ -26,15 +23,15 @@ length = 0.1
 tracks/0/type = "method"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("AnimationPlayer/Dialog")
+tracks/0/path = NodePath(".")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "values": [{
-"args": ["game_start", 0],
-"method": &"start"
+"args": [],
+"method": &"start_dialog"
 }]
 }
 
@@ -42,8 +39,6 @@ tracks/0/keys = {
 _data = {
 &"default": SubResource("Animation_fyndt")
 }
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bhcbb"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_5kbu1"]
 
@@ -83,11 +78,15 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_5n7bv"]
+load_path = "res://.godot/imported/icon_condition.png-7cb501efd58b5928a9e928cd3e0af86a.ctex"
+
 [node name="Main" type="Node2D"]
 
 [node name="StartCutScene" type="Node" parent="." node_paths=PackedStringArray("animation_player")]
 script = ExtResource("1_5kbu1")
 animation_player = NodePath("AnimationPlayer")
+dialog_timeline = ExtResource("2_uwqkg")
 metadata/_custom_type_script = "uid://gcbdmpbqpcyk"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="StartCutScene"]
@@ -95,108 +94,8 @@ libraries = {
 &"": SubResource("AnimationLibrary_kmhfv")
 }
 
-[node name="Dialog" type="Node" parent="StartCutScene/AnimationPlayer"]
-script = ExtResource("2_l4865")
-
-[node name="CanvasLayer" type="CanvasLayer" parent="StartCutScene/AnimationPlayer/Dialog"]
-
-[node name="DialogMain" type="Control" parent="StartCutScene/AnimationPlayer/Dialog/CanvasLayer"]
-unique_name_in_owner = true
-visible = false
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="MessagePanel" type="Panel" parent="StartCutScene/AnimationPlayer/Dialog/CanvasLayer/DialogMain"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -400.0
-offset_top = -146.0
-offset_right = 400.0
-offset_bottom = 146.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-
-[node name="MessageRichLabel" type="RichTextLabel" parent="StartCutScene/AnimationPlayer/Dialog/CanvasLayer/DialogMain/MessagePanel"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 20.0
-offset_top = 16.0
-offset_right = -20.0
-offset_bottom = -16.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-bbcode_enabled = true
-text = "Lorem ipsum"
-scroll_active = false
-
-[node name="MenuPanel" type="Panel" parent="StartCutScene/AnimationPlayer/Dialog/CanvasLayer/DialogMain"]
-visible = false
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -81.5
-offset_top = -97.5
-offset_right = 81.5
-offset_bottom = 97.5
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxEmpty_bhcbb")
-metadata/_edit_group_ = true
-
-[node name="ButtonContainer" type="VBoxContainer" parent="StartCutScene/AnimationPlayer/Dialog/CanvasLayer/DialogMain/MenuPanel"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Madtalk" type="Node" parent="StartCutScene/AnimationPlayer/Dialog"]
-script = ExtResource("3_e7lxg")
-DialogMainControl = NodePath("../AutoFadeDialogMain")
-DialogMessageBox = NodePath("../AutoFadeMessageBox")
-DialogMessageLabel = NodePath("../CanvasLayer/DialogMain/MessagePanel/MessageRichLabel")
-DialogButtonsMenu = NodePath("../AutoFadeMenu")
-DialogButtonsContainer = NodePath("../CanvasLayer/DialogMain/MenuPanel/ButtonContainer")
-KeyPressAudioStreamPlayer = NodePath("AudioStreamPlayer")
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="StartCutScene/AnimationPlayer/Dialog/Madtalk"]
-stream = ExtResource("4_huwsf")
-
-[node name="AutoFadeDialogMain" type="Control" parent="StartCutScene/AnimationPlayer/Dialog" node_paths=PackedStringArray("effect_target")]
-layout_mode = 3
-anchors_preset = 0
-script = ExtResource("5_qwn1w")
-effect_target = NodePath("../CanvasLayer/DialogMain")
-
-[node name="AutoFadeMessageBox" type="Control" parent="StartCutScene/AnimationPlayer/Dialog" node_paths=PackedStringArray("effect_target")]
-layout_mode = 3
-anchors_preset = 0
-script = ExtResource("5_qwn1w")
-effect_target = NodePath("../CanvasLayer/DialogMain/MessagePanel")
-
-[node name="AutoFadeMenu" type="Control" parent="StartCutScene/AnimationPlayer/Dialog" node_paths=PackedStringArray("effect_target")]
-layout_mode = 3
-anchors_preset = 0
-script = ExtResource("5_qwn1w")
-effect_target = NodePath("../CanvasLayer/DialogMain/MenuPanel")
-
 [node name="AutoFadeWorld" type="Node2D" parent="." node_paths=PackedStringArray("effect_target")]
+visible = false
 script = ExtResource("5_qwn1w")
 effect_target = NodePath("../World")
 
@@ -265,11 +164,10 @@ script = ExtResource("17_eajde")
 message = "What is it?"
 
 [node name="TextureRect" parent="World/Clickable" index="1"]
-texture = ExtResource("18_r782i")
+texture = SubResource("CompressedTexture2D_5n7bv")
 
 [node name="Toast" parent="." instance=ExtResource("19_l4865")]
 
 [connection signal="tree_exiting" from="StartCutScene" to="AutoFadeWorld" method="show"]
-[connection signal="dialog_finished" from="StartCutScene/AnimationPlayer/Dialog" to="StartCutScene" method="end_cutscene" unbinds=2]
 
 [editable path="World/Clickable"]

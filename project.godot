@@ -25,9 +25,8 @@ buses/default_bus_layout="uid://bu503ur7p8y2a"
 [autoload]
 
 GlobalServiceRequests="*res://src/scripts/global_service_requests.gd"
-MadTalkGlobals="*res://addons/madtalk/runtime/MadTalkGlobals.tscn"
-Dialogic="*res://addons/dialogic/Core/DialogicGameHandler.gd"
 DialogicHandler="*res://src/dialog/dialogic_handler.gd"
+Dialogic="*res://addons/dialogic/Core/DialogicGameHandler.gd"
 
 [debug]
 
@@ -37,6 +36,7 @@ gdscript/warnings/unassigned_variable_op_assign=0
 
 directories/dch_directory={}
 directories/dtl_directory={
+"hello_timeline": "res://tests/assets/hello_timeline.dtl",
 "test_backpack_timeline": "res://tests/assets/test_backpack_timeline.dtl",
 "test_quest_timeline": "res://tests/assets/test_quest_timeline.dtl"
 }
@@ -87,7 +87,7 @@ window/subwindows/embed_subwindows=false
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/dialogic/plugin.cfg", "res://addons/font_auto_size_labels/plugin.cfg", "res://addons/format_on_save/plugin.cfg", "res://addons/gdscript_formatter/plugin.cfg", "res://addons/madtalk/plugin.cfg", "res://addons/resource_databases/editor_only/plugin.cfg")
+enabled=PackedStringArray("res://addons/dialogic/plugin.cfg", "res://addons/font_auto_size_labels/plugin.cfg", "res://addons/format_on_save/plugin.cfg", "res://addons/gdscript_formatter/plugin.cfg", "res://addons/resource_databases/editor_only/plugin.cfg")
 
 [input]
 

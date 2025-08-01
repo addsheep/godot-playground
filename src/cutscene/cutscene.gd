@@ -4,6 +4,7 @@ class_name CutScene extends Node
 @export var animation_player: AnimationPlayer
 @export var animation_name: String = "default"
 @export var auto_end: bool
+@export var dialog_timeline: DialogicTimeline
 
 
 func _get_configuration_warnings() -> PackedStringArray:
@@ -27,3 +28,10 @@ func _ready() -> void:
 func end_cutscene() -> void:
 	get_tree().paused = false
 	queue_free()
+
+
+func start_dialog() -> void:
+	Dialogic.process_mode = Node.PROCESS_MODE_ALWAYS
+	Dialogic.Styles.load_style("", self)  ## load the style nodes under the cutscene node for enabled processing
+	Dialogic.timeline_ended.connect(end_cutscene)
+	Dialogic.start(dialog_timeline)

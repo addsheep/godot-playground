@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://bcn4c8sgv26w2"]
+[gd_scene load_steps=16 format=3 uid="uid://bcn4c8sgv26w2"]
 
 [ext_resource type="AudioStream" uid="uid://o8mcsqxdvo68" path="res://assets/music/boobanger/vintage-boobanger-fullmix-210785.mp3" id="2_bjkti"]
 [ext_resource type="Script" uid="uid://dy83sm3jk0w2w" path="res://src/interaction/interaction_controller.gd" id="3_noj3q"]
@@ -11,7 +11,6 @@
 [ext_resource type="Texture2D" uid="uid://criq7ti3sarma" path="res://assets/kenney/character_purple_walk_a.png" id="10_2mxrt"]
 [ext_resource type="PackedScene" uid="uid://bgiuk7jpdbis4" path="res://src/toast/toast.tscn" id="11_bjkti"]
 [ext_resource type="Texture2D" uid="uid://pitjyqj7brld" path="res://addons/resource_databases/editor_only/ui/icons/create_clean.svg" id="11_j5h6c"]
-[ext_resource type="PackedScene" uid="uid://cuqg3eu58tvfr" path="res://src/dialog/dialog_madtalk.tscn" id="12_noj3q"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_srxbw"]
 
@@ -105,5 +104,3 @@ autoplay = "idle"
 texture = ExtResource("11_j5h6c")
 
 [node name="Toast" parent="." instance=ExtResource("11_bjkti")]
-
-[node name="Dialog" parent="." instance=ExtResource("12_noj3q")]

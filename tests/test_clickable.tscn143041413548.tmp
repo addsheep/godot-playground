@@ -1,9 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://djk1sebtueu62"]
+[gd_scene load_steps=12 format=3 uid="uid://djk1sebtueu62"]
 
 [ext_resource type="PackedScene" uid="uid://dwjdpucscrr7m" path="res://src/interaction/clickable.tscn" id="1_x8q5o"]
 [ext_resource type="Script" uid="uid://c7n1mamnfj07v" path="res://src/interaction/perform_look.gd" id="2_4rxwg"]
 [ext_resource type="Script" uid="uid://b3uue5g7vfyuh" path="res://src/side_effect/side_effect_resource.gd" id="3_jwci2"]
+[ext_resource type="Script" uid="uid://bchl7kx6fwell" path="res://src/interaction/perform_dialog.gd" id="3_liekk"]
 [ext_resource type="Script" uid="uid://cc7oy4nwvhp2o" path="res://src/interaction/perform_take.gd" id="5_f7qxq"]
+[ext_resource type="Resource" uid="uid://c2nvuwbetnodt" path="res://tests/assets/hello_timeline.dtl" id="5_pxdxa"]
 [ext_resource type="Resource" uid="uid://ccp7fayv6p7yk" path="res://tests/assets/test_item.tres" id="7_jwci2"]
 [ext_resource type="PackedScene" uid="uid://bgiuk7jpdbis4" path="res://src/toast/toast.tscn" id="9_dkoq0"]
 [ext_resource type="Script" uid="uid://dws4ikeu8uour" path="res://src/inventory/backpack.gd" id="11_twrno"]
@@ -29,7 +31,11 @@ message = "an object with side effect"
 side_effect = SubResource("Resource_tve6v")
 metadata/_custom_type_script = "uid://c7n1mamnfj07v"
 
-[node name="Take" type="Node" parent="Object/Clickable/Interactions" index="1" node_paths=PackedStringArray("object")]
+[node name="Talk" type="Node" parent="Object/Clickable/Interactions" index="1"]
+script = ExtResource("3_liekk")
+timeline = ExtResource("5_pxdxa")
+
+[node name="Take" type="Node" parent="Object/Clickable/Interactions" index="2" node_paths=PackedStringArray("object")]
 script = ExtResource("5_f7qxq")
 item = ExtResource("7_jwci2")
 object = NodePath("../..")
