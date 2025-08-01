@@ -8,4 +8,4 @@ Tell me what you want to do
 if {DialogicHandler.has_items("test_item", 3)}:
 	You've got enough!
 else:
-jump
+	jump
