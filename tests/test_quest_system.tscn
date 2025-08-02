@@ -1,11 +1,12 @@
-[gd_scene load_steps=7 format=3 uid="uid://bmw6aa5d2quyn"]
+[gd_scene load_steps=8 format=3 uid="uid://bmw6aa5d2quyn"]
 
 [ext_resource type="Script" uid="uid://qngaqtfolrik" path="res://tests/test_quest_system.gd" id="1_1dyxg"]
 [ext_resource type="Resource" uid="uid://clc8weticw7gi" path="res://tests/assets/test_quest.tres" id="2_5fvhd"]
-[ext_resource type="Resource" uid="uid://mrhqlq85qb1f" path="res://tests/assets/test_inventory.tres" id="3_ycbh3"]
 [ext_resource type="Resource" uid="uid://cgunfgyrdvbyq" path="res://tests/assets/test_quest_timeline.dtl" id="4_1xh8r"]
 [ext_resource type="PackedScene" uid="uid://byx2qtoyynh8f" path="res://src/quest/quest_ui.tscn" id="4_qu6fi"]
 [ext_resource type="Script" uid="uid://br1g6tlcdqei0" path="res://src/quest/quest_manager.gd" id="5_5fvhd"]
+[ext_resource type="Script" uid="uid://i3kgqincvqjf" path="res://src/quest/collect_item_quest_owner.gd" id="7_vdp4s"]
+[ext_resource type="Script" uid="uid://dws4ikeu8uour" path="res://src/inventory/backpack.gd" id="8_qyova"]
 
 [node name="TestQuestSystem" type="Control"]
 layout_mode = 3
@@ -16,7 +17,6 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_1dyxg")
 example_quest = ExtResource("2_5fvhd")
-inventory = ExtResource("3_ycbh3")
 dialog_timeline = ExtResource("4_1xh8r")
 
 [node name="QuestUi" parent="." instance=ExtResource("4_qu6fi")]
@@ -70,6 +70,15 @@ text = "start dialog"
 [node name="QuestManager" type="Node" parent="."]
 script = ExtResource("5_5fvhd")
 
+[node name="QuestOwner" type="Node" parent="."]
+script = ExtResource("7_vdp4s")
+item_type = "test_item"
+quest_id = "test_quest"
+
+[node name="Backpack" type="Node" parent="."]
+script = ExtResource("8_qyova")
+metadata/_custom_type_script = "uid://dws4ikeu8uour"
+
 [connection signal="pressed" from="ButtonAdd" to="." method="add_inventory"]
-[connection signal="pressed" from="ButtonStart" to="." method="start_quest"]
+[connection signal="pressed" from="ButtonStart" to="QuestOwner" method="start_quest"]
 [connection signal="pressed" from="ButtonDialog" to="." method="start_dialog"]
